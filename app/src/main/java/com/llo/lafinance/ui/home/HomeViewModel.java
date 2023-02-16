@@ -14,11 +14,11 @@ public class HomeViewModel extends ViewModel {
         mText = new MutableLiveData<>();
         LocalDateTime localDateTime = LocalDateTime.now();
 
-        if(localDateTime.getHour() > 0 && localDateTime.getHour() < 11){
+        if (localDateTime.getHour() > 0 && localDateTime.getHour() < 11) {
             mText.setValue("Bom dia, Leonardo!");
         } else if (localDateTime.getHour() > 11 && localDateTime.getHour() < 18) {
             mText.setValue("Boa tarde, Leonardo!");
-        } else if (localDateTime.getHour() > 18) {
+        } else if (localDateTime.getHour() >= 18) {
             mText.setValue("Boa noite, Leonardo!");
         }
     }
