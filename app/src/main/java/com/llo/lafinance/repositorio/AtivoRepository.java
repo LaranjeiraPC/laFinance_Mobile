@@ -8,9 +8,12 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.llo.lafinance.config.Conexao;
 import com.llo.lafinance.model.Ativo;
+import com.llo.lafinance.model.Compra;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class AtivoRepository {
 
@@ -69,5 +72,27 @@ public class AtivoRepository {
             ativo.setDataCriacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_CRIACAO))));
         }
         return ativo;
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<Ativo> consultarAtivos(){
+        Cursor cursor = banco.query(TABLE_ATIVO, null, null, null, null, null, null);
+
+        ArrayList<Ativo> ativos = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                Ativo ativo = new Ativo();
+                ativo.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(ID))));
+                ativo.setNome(cursor.getString(cursor.getColumnIndex(NOME)));
+                ativo.setDescricao(cursor.getString(cursor.getColumnIndex(DESCRICAO)));
+
+                if(Objects.nonNull(cursor.getString(cursor.getColumnIndex(DATA_ATUALIZACAO))))
+                    ativo.setDataAtualizacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_ATUALIZACAO))));
+
+                ativo.setDataCriacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_CRIACAO))));
+                ativos.add(ativo);
+            } while (cursor.moveToNext());
+        }
+        return ativos;
     }
 }

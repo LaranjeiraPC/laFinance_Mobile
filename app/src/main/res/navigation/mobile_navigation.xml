@@ -4,19 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_home">
-
     <fragment
         android:id="@+id/nav_home"
         android:name="com.llo.lafinance.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
-
     <fragment
         android:id="@+id/nav_carteira"
         android:name="com.llo.lafinance.ui.carteira.CarteiraFragment"
         android:label="@string/menu_carteira"
         tools:layout="@layout/fragment_carteira" />
-
     <fragment
         android:id="@+id/nav_relatorio"
         android:name="com.llo.lafinance.ui.slideshow.SlideshowFragment"
@@ -25,7 +22,7 @@
     <fragment
         android:id="@+id/nav_ativo"
         android:name="com.llo.lafinance.ui.ativo.AtivoFragment"
-        android:label="@string/menu_relatorio"
+        android:label="@string/menu_ativo"
         tools:layout="@layout/fragment_ativo" />
     <fragment
         android:id="@+id/nav_configuracao"
