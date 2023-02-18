@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CadastraCompraActivity">
-
+    tools:context=".activity.CadastraCompraActivity"
+    android:background="@color/black">
 
     <TextView
         android:id="@+id/textView"
@@ -19,18 +19,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.064" />
 
-    <EditText
-        android:id="@+id/edittextativo"
+    <Spinner
+        android:id="@+id/spinner_ativo"
         android:layout_width="336dp"
         android:layout_height="49dp"
-        android:ems="10"
-        android:hint="Sigla do ativo"
-        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.107" />
+        app:layout_constraintVertical_bias="0.108" />
 
     <TextView
         android:id="@+id/textView2"
