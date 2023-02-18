@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CadastraAtivoActivity">
+    tools:context=".ui.ativo.CadastraAtivoActivity">
 
     <TextView
         android:id="@+id/textViewLegendaNomeAtivo"

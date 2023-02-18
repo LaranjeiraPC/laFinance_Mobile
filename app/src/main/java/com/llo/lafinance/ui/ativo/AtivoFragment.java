@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -33,6 +34,9 @@ public class AtivoFragment extends Fragment {
         ArrayList<Ativo> ativos = new AtivoRepository(context).consultarAtivos();
         final ListView ativoListView = binding.listViewAtivo;
 
+        final TextView ativoTotalTextView = binding.idAtivoTotal;
+
+        this.definirQuantidadeTotalAtivos(ativoTotalTextView, ativos);
         this.definirListaAtivos(ativoListView, ativos);
 
         Button button = root.findViewById(R.id.buttonCadastraAtivo);
@@ -42,6 +46,10 @@ public class AtivoFragment extends Fragment {
         });
 
         return root;
+    }
+
+    private void definirQuantidadeTotalAtivos(TextView ativoTotalTextView, ArrayList<Ativo> ativos) {
+        ativoTotalTextView.setText(String.valueOf(ativos.size()));
     }
 
     private void definirListaAtivos(ListView ativo, ArrayList<Ativo> ativos) {
