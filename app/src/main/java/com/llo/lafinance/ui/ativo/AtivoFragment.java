@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -32,7 +34,9 @@ public class AtivoFragment extends Fragment {
         View root = binding.getRoot();
 
         ArrayList<Ativo> ativos = new AtivoRepository(context).consultarAtivos();
+
         final ListView ativoListView = binding.listViewAtivo;
+        this.carregarEditaActivity(ativos, ativoListView);
 
         final TextView ativoTotalTextView = binding.idAtivoTotal;
 
@@ -46,6 +50,22 @@ public class AtivoFragment extends Fragment {
         });
 
         return root;
+    }
+
+    private void carregarEditaActivity(ArrayList<Ativo> ativos, ListView ativoListView) {
+        ativoListView.setOnItemClickListener((parent, view, position, id) -> {
+            Ativo ativoTemp = ativos.get(position);
+
+            Intent intent = new Intent(context, EditaAtivoActivity.class);
+
+            Bundle txtBundle = new Bundle();
+            txtBundle.putString("id", ativoTemp.getId().toString());
+            txtBundle.putString("nome", ativoTemp.getNome());
+            txtBundle.putString("descricao", ativoTemp.getDescricao());
+
+            intent.putExtras(txtBundle);
+            startActivity(intent);
+        });
     }
 
     private void definirQuantidadeTotalAtivos(TextView ativoTotalTextView, ArrayList<Ativo> ativos) {

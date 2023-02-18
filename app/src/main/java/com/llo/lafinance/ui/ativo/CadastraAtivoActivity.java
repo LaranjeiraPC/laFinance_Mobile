@@ -68,5 +68,6 @@ public class CadastraAtivoActivity extends AppCompatActivity {
     private void retornarTelaAtivo() {
         Intent intent = new Intent(CadastraAtivoActivity.this, PrincipalActivity.class);
         startActivity(intent);
+        finish();
     }
 }

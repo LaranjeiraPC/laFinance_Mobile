@@ -33,6 +33,11 @@
             android:label="@string/title_activity_cadastra_ativo"
             android:theme="@style/Theme.LaFinance.NoActionBar" />
         <activity
+            android:name=".ui.ativo.EditaAtivoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_edita_ativo"
+            android:theme="@style/Theme.LaFinance.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
 <!--            <intent-filter>-->

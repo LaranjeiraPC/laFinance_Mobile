@@ -29,7 +29,6 @@ public class CadastraCompraActivity extends AppCompatActivity implements Adapter
     private EditText valorUnitario;
     private String[] nomeAtivos;
     private CompraRepository compraRepository;
-
     private AtivoRepository ativoRepository;
 
     @Override

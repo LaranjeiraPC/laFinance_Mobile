@@ -38,6 +38,7 @@ public class PrincipalActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
                 Intent intent = new Intent(PrincipalActivity.this, CadastraCompraActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

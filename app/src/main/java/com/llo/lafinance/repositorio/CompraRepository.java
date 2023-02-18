@@ -12,7 +12,6 @@ import com.llo.lafinance.model.Compra;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CompraRepository {
 
@@ -66,5 +65,20 @@ public class CompraRepository {
             } while (cursor.moveToNext());
         }
         return compras;
+    }
+
+    @SuppressLint("Range")
+    public Boolean consultarComprasPorNomeAtivo(String nomeAtivo){
+        Cursor cursor = banco.query(TABLE_COMPRA, null, ATIVO + " LIKE " + "'" + nomeAtivo + "'", null, null, null, null);
+
+        ArrayList<Compra> compras = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                Compra compra = new Compra();
+                compra.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(ID))));
+                compras.add(compra);
+            } while (cursor.moveToNext());
+        }
+        return compras.size() > 0;
     }
 }
