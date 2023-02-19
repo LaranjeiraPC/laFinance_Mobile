@@ -14,11 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.llo.lafinance.R;
-import com.llo.lafinance.ui.principal.PrincipalActivity;
 import com.llo.lafinance.model.Ativo;
 import com.llo.lafinance.model.Compra;
+import com.llo.lafinance.model.enums.Status;
 import com.llo.lafinance.repositorio.AtivoRepository;
 import com.llo.lafinance.repositorio.CompraRepository;
+import com.llo.lafinance.ui.principal.PrincipalActivity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -62,7 +63,6 @@ public class CadastraCompraActivity extends AppCompatActivity implements Adapter
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     private void listarAtivos(String[] nomeAtivos) {
@@ -78,6 +78,7 @@ public class CadastraCompraActivity extends AppCompatActivity implements Adapter
         if (ativo.length() > 0 && quantidade.getText().length() > 0 && valorUnitario.getText().length() > 0) {
             Compra compra = new Compra();
             compra.setAtivo(ativo);
+            compra.setStatus(Status.DISPONIVEL);
             compra.setQuantidade(Integer.parseInt(quantidade.getText().toString()));
             compra.setPrecoUnitario(new BigDecimal(valorUnitario.getText().toString()));
             compra.setDataCriacao(LocalDate.now());
@@ -89,7 +90,6 @@ public class CadastraCompraActivity extends AppCompatActivity implements Adapter
 
             this.carregarTelaPrincipal();
         } else {
-
             Snackbar.make(view, "Necessário preencher todos os campos!", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }

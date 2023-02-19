@@ -39,7 +39,7 @@ public class CompraRepository {
     public long inserir(Compra compra) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(ATIVO, compra.getAtivo().toUpperCase());
-        contentValues.put(STATUS, "S");
+        contentValues.put(STATUS, compra.getStatus().name());
         contentValues.put(QUANTIDADE, compra.getQuantidade());
         contentValues.put(PRECO_UNITARIO, compra.getPrecoUnitario().toString());
         contentValues.put(PRECO_TOTAL, compra.getPrecoTotal().toString());
