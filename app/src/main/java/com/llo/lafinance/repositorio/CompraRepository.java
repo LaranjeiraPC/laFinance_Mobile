@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.llo.lafinance.config.Conexao;
 import com.llo.lafinance.model.Compra;
+import com.llo.lafinance.model.enums.Status;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -68,7 +69,7 @@ public class CompraRepository {
                 compra.setQuantidade(Integer.parseInt(cursor.getString(cursor.getColumnIndex(QUANTIDADE))));
                 compra.setPrecoUnitario(new BigDecimal(cursor.getString(cursor.getColumnIndex(PRECO_UNITARIO))));
                 compra.setPrecoTotal(new BigDecimal(cursor.getString(cursor.getColumnIndex(PRECO_TOTAL))));
-                compra.setStatus(cursor.getString(cursor.getColumnIndex(STATUS)));
+                compra.setStatus(Status.valueOf(cursor.getString(cursor.getColumnIndex(STATUS))));
                 compra.setDataCriacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_CRIACAO))));
                 compras.add(compra);
             } while (cursor.moveToNext());
@@ -103,7 +104,7 @@ public class CompraRepository {
                 compra.setQuantidade(Integer.parseInt(cursor.getString(cursor.getColumnIndex(QUANTIDADE))));
                 compra.setPrecoUnitario(new BigDecimal(cursor.getString(cursor.getColumnIndex(PRECO_UNITARIO))));
                 compra.setPrecoTotal(new BigDecimal(cursor.getString(cursor.getColumnIndex(PRECO_TOTAL))));
-                compra.setStatus(cursor.getString(cursor.getColumnIndex(STATUS)));
+                compra.setStatus(Status.valueOf(cursor.getString(cursor.getColumnIndex(STATUS))));
                 compra.setDataCriacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_CRIACAO))));
             } while (cursor.moveToNext());
         }

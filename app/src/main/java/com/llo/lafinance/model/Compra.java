@@ -1,5 +1,7 @@
 package com.llo.lafinance.model;
 
+import com.llo.lafinance.model.enums.Status;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -8,7 +10,7 @@ public class Compra implements Serializable {
 
     private Integer id;
     private String ativo;
-    private String status;
+    private Status status;
     private Integer quantidade;
     private BigDecimal precoUnitario;
     private BigDecimal precoTotal;
@@ -29,14 +31,6 @@ public class Compra implements Serializable {
 
     public void setAtivo(String ativo) {
         this.ativo = ativo;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public Integer getQuantidade() {
@@ -77,5 +71,13 @@ public class Compra implements Serializable {
 
     public void setPrecoTotal(BigDecimal precoTotal) {
         this.precoTotal = precoTotal;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
