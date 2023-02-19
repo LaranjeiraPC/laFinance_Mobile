@@ -74,7 +74,7 @@ public class EditaCompraActivity extends AppCompatActivity {
         long id = this.compraRepository.deletar(compra.getId());
         Snackbar.make(view, "Compra excluído com sucesso: " + id, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-        this.retornarTelaCarteira();
+        this.carregarTelaPrincipal();
     }
 
     private void carregarTelaPrincipal() {
@@ -84,10 +84,6 @@ public class EditaCompraActivity extends AppCompatActivity {
     }
 
     public void cancelar(View view) {
-        this.carregarTelaPrincipal();
-    }
-
-    private void retornarTelaCarteira() {
-        this.carregarTelaPrincipal();
+        this.finish();
     }
 }

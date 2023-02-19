@@ -12,6 +12,7 @@ import com.llo.lafinance.R;
 import com.llo.lafinance.activity.PrincipalActivity;
 import com.llo.lafinance.model.Ativo;
 import com.llo.lafinance.repositorio.AtivoRepository;
+import com.llo.lafinance.ui.carteira.CadastraCompraActivity;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -46,7 +47,7 @@ public class CadastraAtivoActivity extends AppCompatActivity {
                 Snackbar.make(view, "Ativo cadastrado com sucesso: " + id, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-                this.retornarTelaAtivo();
+                this.retornarTelaPrincipal();
             }
         } else {
             Snackbar.make(view, "Necessário preencher o campo Nome!", Snackbar.LENGTH_LONG)
@@ -63,7 +64,9 @@ public class CadastraAtivoActivity extends AppCompatActivity {
         return ativo;
     }
 
-    private void retornarTelaAtivo() {
+    private void retornarTelaPrincipal() {
+        Intent intent = new Intent(CadastraAtivoActivity.this, PrincipalActivity.class);
+        startActivity(intent);
         finish();
     }
 

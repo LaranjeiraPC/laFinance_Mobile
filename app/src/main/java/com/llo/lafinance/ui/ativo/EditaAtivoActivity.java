@@ -63,7 +63,7 @@ public class EditaAtivoActivity extends AppCompatActivity {
                 Snackbar.make(view, "Ativo atualizado com sucesso: " + id, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-                this.retornarTelaAtivo();
+                this.retornarTelaPrincipal();
             }
         } else {
             Snackbar.make(view, "Necessário preencher o campo Nome!", Snackbar.LENGTH_LONG)
@@ -79,13 +79,13 @@ public class EditaAtivoActivity extends AppCompatActivity {
             Snackbar.make(view, "Existente compras de ações!", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         } else {
-            ativo = this.definirAtivo(ativo, nomeAtivo, descricaoAtivo);
+            this.definirAtivo(ativo, nomeAtivo, descricaoAtivo);
 
             long id = this.ativoRepository.deletar(idAtivo);
             Snackbar.make(view, "Ativo excluído com sucesso: " + id, Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
 
-            this.retornarTelaAtivo();
+            this.retornarTelaPrincipal();
         }
     }
 
@@ -103,9 +103,13 @@ public class EditaAtivoActivity extends AppCompatActivity {
         return ativo;
     }
 
-    private void retornarTelaAtivo() {
+    private void retornarTelaPrincipal() {
         Intent intent = new Intent(EditaAtivoActivity.this, PrincipalActivity.class);
         startActivity(intent);
+        finish();
+    }
+
+    public void cancelar(View view) {
         finish();
     }
 }
