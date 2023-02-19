@@ -1,4 +1,4 @@
-package com.llo.lafinance.ui.ativo;
+package com.llo.lafinance.ui.ativo.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +20,8 @@ import com.llo.lafinance.adapter.AtivoAdapter;
 import com.llo.lafinance.databinding.FragmentAtivoBinding;
 import com.llo.lafinance.model.Ativo;
 import com.llo.lafinance.repositorio.AtivoRepository;
+import com.llo.lafinance.ui.ativo.CadastraAtivoActivity;
+import com.llo.lafinance.ui.ativo.EditaAtivoActivity;
 
 import java.util.ArrayList;
 

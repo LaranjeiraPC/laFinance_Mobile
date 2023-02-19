@@ -9,10 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.llo.lafinance.R;
-import com.llo.lafinance.activity.PrincipalActivity;
+import com.llo.lafinance.ui.principal.PrincipalActivity;
 import com.llo.lafinance.model.Ativo;
 import com.llo.lafinance.repositorio.AtivoRepository;
-import com.llo.lafinance.ui.carteira.CadastraCompraActivity;
 
 import java.time.LocalDate;
 import java.util.Objects;

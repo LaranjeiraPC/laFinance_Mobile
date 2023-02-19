@@ -1,4 +1,4 @@
-package com.llo.lafinance.ui.slideshow;
+package com.llo.lafinance.ui.slideshow.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.llo.lafinance.databinding.FragmentSlideshowBinding;
+import com.llo.lafinance.ui.slideshow.SlideshowViewModel;
 
 public class SlideshowFragment extends Fragment {
 

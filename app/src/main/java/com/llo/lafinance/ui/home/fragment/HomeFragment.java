@@ -1,4 +1,4 @@
-package com.llo.lafinance.ui.home;
+package com.llo.lafinance.ui.home.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.llo.lafinance.databinding.FragmentHomeBinding;
+import com.llo.lafinance.ui.home.HomeViewModel;
 
 public class HomeFragment extends Fragment {
 

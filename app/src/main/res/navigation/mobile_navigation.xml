@@ -6,27 +6,27 @@
     app:startDestination="@+id/nav_home">
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.llo.lafinance.ui.home.HomeFragment"
+        android:name="com.llo.lafinance.ui.home.fragment.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/nav_carteira"
-        android:name="com.llo.lafinance.ui.carteira.CarteiraFragment"
+        android:name="com.llo.lafinance.ui.carteira.fragment.CarteiraFragment"
         android:label="@string/menu_carteira"
         tools:layout="@layout/fragment_carteira" />
     <fragment
         android:id="@+id/nav_relatorio"
-        android:name="com.llo.lafinance.ui.slideshow.SlideshowFragment"
+        android:name="com.llo.lafinance.ui.slideshow.fragment.SlideshowFragment"
         android:label="@string/menu_relatorio"
         tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/nav_ativo"
-        android:name="com.llo.lafinance.ui.ativo.AtivoFragment"
+        android:name="com.llo.lafinance.ui.ativo.fragment.AtivoFragment"
         android:label="@string/menu_ativo"
         tools:layout="@layout/fragment_ativo" />
     <fragment
         android:id="@+id/nav_configuracao"
-        android:name="com.llo.lafinance.ui.slideshow.SlideshowFragment"
+        android:name="com.llo.lafinance.ui.slideshow.fragment.SlideshowFragment"
         android:label="@string/menu_configuracao"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>

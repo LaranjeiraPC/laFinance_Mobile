@@ -1,4 +1,4 @@
-package com.llo.lafinance.ui.carteira;
+package com.llo.lafinance.ui.carteira.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import com.llo.lafinance.adapter.CarteiraAdapter;
 import com.llo.lafinance.databinding.FragmentCarteiraBinding;
 import com.llo.lafinance.model.Compra;
 import com.llo.lafinance.repositorio.CompraRepository;
+import com.llo.lafinance.ui.carteira.EditaCompraActivity;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

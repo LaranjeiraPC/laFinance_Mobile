@@ -1,4 +1,4 @@
-package com.llo.lafinance.activity;
+package com.llo.lafinance.ui.principal;
 
 import android.content.Intent;
 import android.os.Bundle;
