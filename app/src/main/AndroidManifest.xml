@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.CadastraCompraActivity"
+            android:name=".ui.carteira.CadastraCompraActivity"
             android:exported="false"
             android:label="@string/title_activity_cadastra_compra"
             android:theme="@style/Theme.LaFinance.NoActionBar" />
@@ -31,6 +31,11 @@
             android:name=".ui.ativo.CadastraAtivoActivity"
             android:exported="false"
             android:label="@string/title_activity_cadastra_ativo"
+            android:theme="@style/Theme.LaFinance.NoActionBar" />
+        <activity
+            android:name=".ui.carteira.EditaCompraActivity"
+            android:exported="false"
+            android:label="@string/title_activity_edita_compra"
             android:theme="@style/Theme.LaFinance.NoActionBar" />
         <activity
             android:name=".ui.ativo.EditaAtivoActivity"
@@ -41,6 +46,11 @@
             android:name=".ui.ativo.AtivoFragment"
             android:exported="false"
             android:label="@string/title_activity_cancela_ativo"
+            android:theme="@style/Theme.LaFinance.NoActionBar" />
+        <activity
+            android:name=".ui.carteira.CarteiraFragment"
+            android:exported="false"
+            android:label="@string/title_activity_carteira_fragment"
             android:theme="@style/Theme.LaFinance.NoActionBar" />
         <activity
             android:name=".MainActivity"

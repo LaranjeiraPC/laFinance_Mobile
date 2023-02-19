@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">LaFinance</string>
     <string name="title_activity_cadastra_compra">CadastraCompraActivity</string>
+    <string name="title_activity_edita_compra">EditaCompraActivity</string>
+    <string name="title_activity_carteira_fragment">CarteiraFragment</string>
     <string name="title_activity_cadastra_ativo">CadastraAtivoActivity</string>
     <string name="title_activity_edita_ativo">EditaAtivoActivity</string>
     <string name="title_activity_cancela_ativo">CadastraAtivoActivity</string>

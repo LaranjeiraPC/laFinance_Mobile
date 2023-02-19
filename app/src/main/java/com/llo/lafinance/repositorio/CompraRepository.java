@@ -30,12 +30,12 @@ public class CompraRepository {
 
     private static final String[] LINHAS = {ID, ATIVO, STATUS, QUANTIDADE, PRECO_UNITARIO, PRECO_TOTAL, DATA_CRIACAO, DATA_ATUALIZACAO};
 
-    public CompraRepository (Context context){
+    public CompraRepository(Context context) {
         conexao = new Conexao(context);
         banco = conexao.getWritableDatabase();
     }
 
-    public long inserir(Compra compra){
+    public long inserir(Compra compra) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(ATIVO, compra.getAtivo().toUpperCase());
         contentValues.put(STATUS, "S");
@@ -46,8 +46,17 @@ public class CompraRepository {
         return banco.insert(TABLE_COMPRA, null, contentValues);
     }
 
+    public long atualizar(Compra compra) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(QUANTIDADE, compra.getQuantidade());
+        contentValues.put(PRECO_UNITARIO, compra.getPrecoUnitario().toString());
+        contentValues.put(PRECO_TOTAL, compra.getPrecoTotal().toString());
+        contentValues.put(DATA_ATUALIZACAO, compra.getDataAtualizacao().toString());
+        return banco.update(TABLE_COMPRA, contentValues, ID + " = ?", new String[]{compra.getId().toString()});
+    }
+
     @SuppressLint("Range")
-    public ArrayList<Compra> consultarComprasAtivas(){
+    public ArrayList<Compra> consultarComprasAtivas() {
         Cursor cursor = banco.query(TABLE_COMPRA, null, null, null, null, null, null);
 
         ArrayList<Compra> compras = new ArrayList<>();
@@ -68,7 +77,7 @@ public class CompraRepository {
     }
 
     @SuppressLint("Range")
-    public Boolean consultarComprasPorNomeAtivo(String nomeAtivo){
+    public Boolean consultarComprasPorNomeAtivo(String nomeAtivo) {
         Cursor cursor = banco.query(TABLE_COMPRA, null, ATIVO + " LIKE " + "'" + nomeAtivo + "'", null, null, null, null);
 
         ArrayList<Compra> compras = new ArrayList<>();
@@ -80,5 +89,28 @@ public class CompraRepository {
             } while (cursor.moveToNext());
         }
         return compras.size() > 0;
+    }
+
+    @SuppressLint("Range")
+    public Compra consultarCompraPorId(Integer id) {
+        Cursor cursor = banco.query(TABLE_COMPRA, null, ID + "=" + id, null, null, null, null);
+
+        Compra compra = new Compra();
+        if (cursor.moveToFirst()) {
+            do {
+                compra.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(ID))));
+                compra.setAtivo(cursor.getString(cursor.getColumnIndex(ATIVO)));
+                compra.setQuantidade(Integer.parseInt(cursor.getString(cursor.getColumnIndex(QUANTIDADE))));
+                compra.setPrecoUnitario(new BigDecimal(cursor.getString(cursor.getColumnIndex(PRECO_UNITARIO))));
+                compra.setPrecoTotal(new BigDecimal(cursor.getString(cursor.getColumnIndex(PRECO_TOTAL))));
+                compra.setStatus(cursor.getString(cursor.getColumnIndex(STATUS)));
+                compra.setDataCriacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_CRIACAO))));
+            } while (cursor.moveToNext());
+        }
+        return compra;
+    }
+
+    public long deletar(Integer compra) {
+        return banco.delete(TABLE_COMPRA, ID + "=" + compra, null);
     }
 }

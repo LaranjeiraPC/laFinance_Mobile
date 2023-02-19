@@ -1,6 +1,7 @@
 package com.llo.lafinance.ui.carteira;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,7 @@ public class CarteiraFragment extends Fragment {
 
         final TextView carteiraTotalTextView = binding.idCarteiraTotal;
         final ListView carteira = binding.listViewCarteira;
+        this.carregarEditaActivity(compras, carteira);
 
         this.definirPrecoTotalAtivos(carteiraTotalTextView, compras);
         this.definirListaCompras(carteira, compras);
@@ -49,6 +51,23 @@ public class CarteiraFragment extends Fragment {
     private void definirListaCompras(ListView carteira, ArrayList<Compra> compras) {
         CarteiraAdapter carteiraAdapter = new CarteiraAdapter(context, compras);
         carteira.setAdapter(carteiraAdapter);
+    }
+
+    private void carregarEditaActivity(ArrayList<Compra> Compras, ListView compraListView) {
+        compraListView.setOnItemClickListener((parent, view, position, id) -> {
+            Compra compraTemp = Compras.get(position);
+
+            Intent intent = new Intent(context, EditaCompraActivity.class);
+
+            Bundle txtBundle = new Bundle();
+            txtBundle.putString("id", compraTemp.getId().toString());
+            txtBundle.putString("nomeAtivo", compraTemp.getAtivo());
+            txtBundle.putString("quantidade", compraTemp.getQuantidade().toString());
+            txtBundle.putString("valorUnitario", compraTemp.getPrecoUnitario().toString());
+
+            intent.putExtras(txtBundle);
+            startActivity(intent);
+        });
     }
 
     @Override
