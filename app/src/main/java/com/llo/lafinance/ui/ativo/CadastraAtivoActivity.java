@@ -17,11 +17,9 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class CadastraAtivoActivity extends AppCompatActivity {
-
     private EditText nomeAtivo;
     private EditText descricaoAtivo;
     private AtivoRepository ativoRepository;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +64,10 @@ public class CadastraAtivoActivity extends AppCompatActivity {
     }
 
     private void retornarTelaAtivo() {
-        Intent intent = new Intent(CadastraAtivoActivity.this, PrincipalActivity.class);
-        startActivity(intent);
+        finish();
+    }
+
+    public void cancelar(View view) {
         finish();
     }
 }
