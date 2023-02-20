@@ -11,6 +11,7 @@ public class Venda implements Serializable {
     private Integer quantidade;
     private BigDecimal precoUnitario;
     private BigDecimal precoTotal;
+    private BigDecimal lucroTotal;
     private LocalDate dataCriacao;
     private LocalDate dataAtualizacao;
 
@@ -68,5 +69,13 @@ public class Venda implements Serializable {
 
     public void setDataAtualizacao(LocalDate dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
+    }
+
+    public BigDecimal getLucroTotal() {
+        return lucroTotal;
+    }
+
+    public void setLucroTotal(BigDecimal lucroTotal) {
+        this.lucroTotal = lucroTotal;
     }
 }

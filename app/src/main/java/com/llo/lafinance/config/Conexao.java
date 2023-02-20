@@ -36,7 +36,7 @@ public class Conexao extends SQLiteOpenHelper {
     private void criarTabelaVenda(SQLiteDatabase db) {
         db.execSQL("create table venda(id integer primary key autoincrement, " +
                 " compra integer, quantidade integer, precoUnitario decimal, " +
-                " precoTotal decimal, dataCriacao date, dataAtualizacao date)");
+                " precoTotal decimal, lucroTotal decimal, dataCriacao date, dataAtualizacao date)");
     }
 
     @Override

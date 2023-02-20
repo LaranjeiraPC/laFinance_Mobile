@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.llo.lafinance.R;
+import com.llo.lafinance.model.Compra;
 import com.llo.lafinance.model.Venda;
 import com.llo.lafinance.model.enums.Status;
 import com.llo.lafinance.repositorio.CompraRepository;
@@ -61,12 +62,14 @@ public class CadastraVendaActivity extends AppCompatActivity {
 
     public void salvar(View view) {
         if (quantidadeVenda.getText().length() > 0 && precoUnitarioVenda.getText().length() > 0) {
+            BigDecimal precoTotalCompra = this.compraRepository.consultarCompraPorId(idCompra).getPrecoTotal();
             Venda venda = new Venda();
             venda.setCompra(idCompra);
             venda.setQuantidade(Integer.parseInt(quantidadeVenda.getText().toString()));
             venda.setPrecoUnitario(new BigDecimal(precoUnitarioVenda.getText().toString()));
             venda.setDataCriacao(LocalDate.now());
             venda.setPrecoTotal(venda.getPrecoUnitario().multiply(BigDecimal.valueOf(venda.getQuantidade())));
+            venda.setLucroTotal(venda.getPrecoTotal().subtract(precoTotalCompra));
 
             long id = this.vendaRepository.inserir(venda);
             Snackbar.make(view, "Venda realizada com sucesso: " + id, Snackbar.LENGTH_LONG)

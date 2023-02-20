@@ -16,9 +16,9 @@
         tools:layout="@layout/fragment_carteira" />
     <fragment
         android:id="@+id/nav_relatorio"
-        android:name="com.llo.lafinance.ui.slideshow.fragment.SlideshowFragment"
+        android:name="com.llo.lafinance.ui.relatorio.fragment.RelatorioFragment"
         android:label="@string/menu_relatorio"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_relatorio" />
     <fragment
         android:id="@+id/nav_ativo"
         android:name="com.llo.lafinance.ui.ativo.fragment.AtivoFragment"
@@ -26,7 +26,7 @@
         tools:layout="@layout/fragment_ativo" />
     <fragment
         android:id="@+id/nav_configuracao"
-        android:name="com.llo.lafinance.ui.slideshow.fragment.SlideshowFragment"
+        android:name="com.llo.lafinance.ui.configuracao.fragment.ConfiguracaoFragment"
         android:label="@string/menu_configuracao"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_configuracao" />
 </navigation>
