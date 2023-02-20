@@ -17,6 +17,7 @@ public class Conexao extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         this.criarTabelaCompra(db);
         this.criarTabelaAtivo(db);
+        this.criarTabelaVenda(db);
     }
 
     private void criarTabelaCompra(SQLiteDatabase db) {
@@ -32,8 +33,13 @@ public class Conexao extends SQLiteOpenHelper {
                 " dataAtualizacao date)");
     }
 
+    private void criarTabelaVenda(SQLiteDatabase db) {
+        db.execSQL("create table venda(id integer primary key autoincrement, " +
+                " compra integer, quantidade integer, precoUnitario decimal, " +
+                " precoTotal decimal, dataCriacao date, dataAtualizacao date)");
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
     }
 }

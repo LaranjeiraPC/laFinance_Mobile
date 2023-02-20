@@ -58,7 +58,7 @@ public class CompraRepository {
 
     @SuppressLint("Range")
     public ArrayList<Compra> consultarComprasAtivas() {
-        Cursor cursor = banco.query(TABLE_COMPRA, null, null, null, null, null, null);
+        Cursor cursor = banco.query(TABLE_COMPRA, null, STATUS + " = 'DISPONIVEL'", null, null, null, null);
 
         ArrayList<Compra> compras = new ArrayList<>();
         if (cursor.moveToFirst()) {
@@ -113,5 +113,12 @@ public class CompraRepository {
 
     public long deletar(Integer compra) {
         return banco.delete(TABLE_COMPRA, ID + "=" + compra, null);
+    }
+
+    public long atualizarStatus(Integer id, Status status) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(STATUS, status.name());
+        contentValues.put(DATA_ATUALIZACAO, LocalDate.now().toString());
+        return banco.update(TABLE_COMPRA, contentValues, ID + " = ?", new String[]{id.toString()});
     }
 }

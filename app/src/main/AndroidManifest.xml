@@ -28,6 +28,11 @@
             android:label="@string/title_activity_cadastra_compra"
             android:theme="@style/Theme.LaFinance.NoActionBar" />
         <activity
+            android:name=".ui.venda.CadastraVendaActivity"
+            android:exported="false"
+            android:label="@string/title_activity_cadastra_venda"
+            android:theme="@style/Theme.LaFinance.NoActionBar" />
+        <activity
             android:name=".ui.ativo.CadastraAtivoActivity"
             android:exported="false"
             android:label="@string/title_activity_cadastra_ativo"

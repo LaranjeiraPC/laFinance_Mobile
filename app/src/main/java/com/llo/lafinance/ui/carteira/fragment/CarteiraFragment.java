@@ -65,6 +65,7 @@ public class CarteiraFragment extends Fragment {
             txtBundle.putString("nomeAtivo", compraTemp.getAtivo());
             txtBundle.putString("quantidade", compraTemp.getQuantidade().toString());
             txtBundle.putString("valorUnitario", compraTemp.getPrecoUnitario().toString());
+            txtBundle.putString("totalCompra", compraTemp.getPrecoTotal().toString());
 
             intent.putExtras(txtBundle);
             startActivity(intent);
