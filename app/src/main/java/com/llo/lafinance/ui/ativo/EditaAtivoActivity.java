@@ -53,7 +53,7 @@ public class EditaAtivoActivity extends AppCompatActivity {
             Ativo ativo = this.ativoRepository.consultarAtivoPorId(idAtivo);
 
             boolean existeCompras = compraRepository.consultarComprasPorNomeAtivo(ativo.getNome());
-            if (existeCompras) {
+            if (!ativo.getNome().equals(nomeAtivo.getText().toString().toUpperCase()) && existeCompras) {
                 Snackbar.make(view, "Existente compras de ações para o nome do ativo anterior!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             } else {
