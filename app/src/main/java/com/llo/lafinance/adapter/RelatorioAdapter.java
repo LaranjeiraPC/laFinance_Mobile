@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import com.llo.lafinance.R;
 import com.llo.lafinance.model.Relatorio;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,8 @@ public class RelatorioAdapter extends ArrayAdapter<Relatorio> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItem = convertView;
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
+
         if (listItem == null)
             listItem = LayoutInflater.from(mContext).inflate(R.layout.list_item_relatorio, parent, false);
 
@@ -45,22 +48,22 @@ public class RelatorioAdapter extends ArrayAdapter<Relatorio> {
         quantidadeCompra.setText(relatorioAtiva.getQuantidadeCompra().toString());
 
         TextView unitarioCompra = listItem.findViewById(R.id.idUnitarioValorCompraRelatorio);
-        unitarioCompra.setText("R$" + relatorioAtiva.getPrecoUnitarioCompra().toString());
+        unitarioCompra.setText(numberFormat.format(relatorioAtiva.getPrecoUnitarioCompra()));
 
         TextView totalCompra = listItem.findViewById(R.id.idTotalValorCompraRelatorio);
-        totalCompra.setText("R$" + relatorioAtiva.getPrecoTotalCompra().toString());
+        totalCompra.setText(numberFormat.format(relatorioAtiva.getPrecoTotalCompra()));
 
         TextView quantidadeVenda = listItem.findViewById(R.id.idQuantidadeValorVendaRelatorio);
         quantidadeVenda.setText(relatorioAtiva.getQuantidadeVenda().toString());
 
         TextView unitarioVenda = listItem.findViewById(R.id.idUnitarioValorVendaRelatorio);
-        unitarioVenda.setText("R$" + relatorioAtiva.getPrecoUnitarioVenda().toString());
+        unitarioVenda.setText(numberFormat.format(relatorioAtiva.getPrecoUnitarioVenda()));
 
         TextView totalVenda = listItem.findViewById(R.id.idTotalValorVendaRelatorio);
-        totalVenda.setText("R$" + relatorioAtiva.getPrecoTotalVenda().toString());
+        totalVenda.setText(numberFormat.format(relatorioAtiva.getPrecoTotalVenda()));
 
         TextView lucroTotal = listItem.findViewById(R.id.idTotalValorDetalheRelatorio);
-        lucroTotal.setText("R$" + relatorioAtiva.getLucroTotal());
+        lucroTotal.setText(numberFormat.format(relatorioAtiva.getLucroTotal()));
 
         TextView dataCompra = listItem.findViewById(R.id.idDataCompraValorDetalheRelatorio);
         dataCompra.setText(relatorioAtiva.getDataCriacaoCompra().toString());

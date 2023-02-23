@@ -19,6 +19,7 @@ import com.llo.lafinance.repositorio.CompraRepository;
 import com.llo.lafinance.ui.carteira.EditaCompraActivity;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class CarteiraFragment extends Fragment {
@@ -45,8 +46,9 @@ public class CarteiraFragment extends Fragment {
     }
 
     private void definirPrecoTotalAtivos(TextView carteiraTotalTextView, ArrayList<Compra> compras) {
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
         BigDecimal precoTotalAtivos = compras.stream().map(c -> c.getPrecoTotal()).reduce(BigDecimal.ZERO, BigDecimal::add);
-        carteiraTotalTextView.setText("R$" + precoTotalAtivos.toString());
+        carteiraTotalTextView.setText(numberFormat.format(precoTotalAtivos));
     }
 
     private void definirListaCompras(ListView carteira, ArrayList<Compra> compras) {

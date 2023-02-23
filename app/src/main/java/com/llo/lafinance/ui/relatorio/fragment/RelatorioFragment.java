@@ -20,6 +20,7 @@ import com.llo.lafinance.repositorio.CompraRepository;
 import com.llo.lafinance.repositorio.VendaRepository;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +32,8 @@ public class RelatorioFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
 
         ArrayList<Venda> vendas = new VendaRepository(context).consultarVendas();
         List<Relatorio> relatorio = vendas.stream().map(v -> {
@@ -54,7 +57,7 @@ public class RelatorioFragment extends Fragment {
 
         final ListView listViewRelatorio = binding.idlistViewRelatorio;
         final TextView idTotalValorRelatorio = binding.idTotalValorRelatorio;
-        idTotalValorRelatorio.setText("R$" + relatorio.stream().map(Relatorio::getLucroTotal).reduce(BigDecimal.ZERO, BigDecimal::add));
+        idTotalValorRelatorio.setText(numberFormat.format(relatorio.stream().map(Relatorio::getLucroTotal).reduce(BigDecimal.ZERO, BigDecimal::add)));
 
         this.definirRelatorio(listViewRelatorio, new ArrayList<>(relatorio));
         return root;

@@ -25,6 +25,7 @@ import com.llo.lafinance.ui.home.HomeViewModel;
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Objects;
 
@@ -70,10 +71,12 @@ public class HomeFragment extends Fragment {
 
         Carteira carteira = new HomeService(this.compraRepository, new VendaRepository(context), new CarteiraRepository(context)).consultarCarteira();
         if (Objects.nonNull(carteira.getId())) {
-            idTotalInvestidoValorHome.setText("R$" + carteira.getTotalInvestido().toString());
-            iLucroLiquidoTotalValorHome.setText("R$" + carteira.getLucroLiquidoTotalAno().toString());
+            NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
+
+            idTotalInvestidoValorHome.setText(numberFormat.format(carteira.getTotalInvestido()));
+            iLucroLiquidoTotalValorHome.setText(numberFormat.format(carteira.getLucroLiquidoTotalAno()));
             iMesLucroLiquidoValorHome.setText(carteira.getMesLucroLiquido());
-            iMesLucroLiquidoDadoValorHome.setText("R$" + carteira.getValorMesLucroLiquido().toString());
+            iMesLucroLiquidoDadoValorHome.setText(numberFormat.format(carteira.getValorMesLucroLiquido()));
         }
 
         return root;
