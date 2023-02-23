@@ -9,9 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.llo.lafinance.R;
+import com.llo.lafinance.domain.HomeService;
 import com.llo.lafinance.model.Compra;
-import com.llo.lafinance.repositorio.AtivoRepository;
+import com.llo.lafinance.repositorio.CarteiraRepository;
 import com.llo.lafinance.repositorio.CompraRepository;
+import com.llo.lafinance.repositorio.VendaRepository;
 import com.llo.lafinance.ui.principal.PrincipalActivity;
 import com.llo.lafinance.ui.venda.CadastraVendaActivity;
 
@@ -26,7 +28,6 @@ public class EditaCompraActivity extends AppCompatActivity {
     private Integer id;
     private BigDecimal totalCompra;
     private CompraRepository compraRepository;
-    private AtivoRepository ativoRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,6 @@ public class EditaCompraActivity extends AppCompatActivity {
         totalCompra = new BigDecimal(total);
 
         compraRepository = new CompraRepository(this);
-        ativoRepository = new AtivoRepository(this);
     }
 
     public void salvar(View view) {
@@ -66,6 +66,7 @@ public class EditaCompraActivity extends AppCompatActivity {
             Snackbar.make(view, "Compra atualizada com sucesso: " + id, Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
 
+            new HomeService(this.compraRepository, new VendaRepository(this), new CarteiraRepository(this)).atualizarCarteira();
             this.carregarTelaPrincipal();
         } else {
             Snackbar.make(view, "Necessário preencher todos os campos!", Snackbar.LENGTH_LONG)
@@ -78,6 +79,7 @@ public class EditaCompraActivity extends AppCompatActivity {
         long id = this.compraRepository.deletar(compra.getId());
         Snackbar.make(view, "Compra excluído com sucesso: " + id, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
+        new HomeService(this.compraRepository, new VendaRepository(this), new CarteiraRepository(this)).atualizarCarteira();
         this.carregarTelaPrincipal();
     }
 

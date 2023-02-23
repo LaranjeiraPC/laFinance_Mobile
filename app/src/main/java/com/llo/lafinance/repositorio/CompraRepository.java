@@ -19,13 +19,14 @@ public class CompraRepository {
     public static final String ID = "id";
     public static final String TABLE_COMPRA = "compra";
     public static final String DATA_CRIACAO = "dataCriacao";
-
     public static final String DATA_ATUALIZACAO = "dataAtualizacao";
     public static final String PRECO_TOTAL = "precoTotal";
     public static final String PRECO_UNITARIO = "precoUnitario";
     public static final String QUANTIDADE = "quantidade";
     public static final String STATUS = "status";
     public static final String ATIVO = "ativo";
+    public static final String DESC = "DESC";
+    public static final String ASC = "ASC";
     private Conexao conexao;
     private SQLiteDatabase banco;
 
@@ -121,4 +122,25 @@ public class CompraRepository {
         contentValues.put(DATA_ATUALIZACAO, LocalDate.now().toString());
         return banco.update(TABLE_COMPRA, contentValues, ID + " = ?", new String[]{id.toString()});
     }
+
+    @SuppressLint("Range")
+    public ArrayList<Compra> consultarComprasDisponiveisPorQuantidadeAgrupada() {
+        String[] columns = new String[]{
+                ATIVO,
+                "sum(" + QUANTIDADE + ") AS " + "tmp_quantidade_total",
+        };
+        Cursor cursor = banco.query(TABLE_COMPRA, columns, STATUS + " = 'DISPONIVEL'", null, ATIVO, null, QUANTIDADE + " " + DESC);
+
+        ArrayList<Compra> compras = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                Compra compra = new Compra();
+                compra.setAtivo(cursor.getString(cursor.getColumnIndex(ATIVO)));
+                compra.setQuantidade(Integer.parseInt(cursor.getString(cursor.getColumnIndex("tmp_quantidade_total"))));
+                compras.add(compra);
+            } while (cursor.moveToNext());
+        }
+        return compras;
+    }
+
 }

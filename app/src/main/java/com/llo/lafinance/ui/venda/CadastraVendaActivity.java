@@ -9,9 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.llo.lafinance.R;
-import com.llo.lafinance.model.Compra;
+import com.llo.lafinance.domain.HomeService;
 import com.llo.lafinance.model.Venda;
 import com.llo.lafinance.model.enums.Status;
+import com.llo.lafinance.repositorio.CarteiraRepository;
 import com.llo.lafinance.repositorio.CompraRepository;
 import com.llo.lafinance.repositorio.VendaRepository;
 import com.llo.lafinance.ui.principal.PrincipalActivity;
@@ -76,6 +77,7 @@ public class CadastraVendaActivity extends AppCompatActivity {
                     .setAction("Action", null).show();
 
             this.compraRepository.atualizarStatus(idCompra, Status.VENDIDO);
+            new HomeService(this.compraRepository, this.vendaRepository, new CarteiraRepository(this)).atualizarCarteira();
             this.carregarTelaPrincipal();
         } else {
             Snackbar.make(view, "Necessário preencher todos os campos!", Snackbar.LENGTH_LONG)

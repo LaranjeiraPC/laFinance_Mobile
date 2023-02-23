@@ -108,22 +108,22 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.738"
+        app:layout_constraintHorizontal_bias="0.67"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.168" />
 
     <TextView
         android:id="@+id/idTotalValorRelatorio"
-        android:layout_width="40dp"
+        android:layout_width="100dp"
         android:layout_height="20dp"
         android:hint="0000"
         android:textAlignment="textStart"
         android:textColor="@color/black"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.859"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.168" />

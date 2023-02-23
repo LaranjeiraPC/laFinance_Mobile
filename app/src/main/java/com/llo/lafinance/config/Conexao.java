@@ -18,6 +18,7 @@ public class Conexao extends SQLiteOpenHelper {
         this.criarTabelaCompra(db);
         this.criarTabelaAtivo(db);
         this.criarTabelaVenda(db);
+        this.criarTabelaCarteira(db);
     }
 
     private void criarTabelaCompra(SQLiteDatabase db) {
@@ -37,6 +38,12 @@ public class Conexao extends SQLiteOpenHelper {
         db.execSQL("create table venda(id integer primary key autoincrement, " +
                 " compra integer, quantidade integer, precoUnitario decimal, " +
                 " precoTotal decimal, lucroTotal decimal, dataCriacao date, dataAtualizacao date)");
+    }
+
+    private void criarTabelaCarteira(SQLiteDatabase db) {
+        db.execSQL("create table carteira(id integer primary key autoincrement, " +
+                " totalInvestido decimal, lucroLiquidoTotalAno decimal, mesLucroLiquido varchar(5), anoVigor integer, " +
+                " valorMesLucroLiquido decimal, dataCriacao date, dataAtualizacao date)");
     }
 
     @Override

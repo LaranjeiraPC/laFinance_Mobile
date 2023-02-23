@@ -79,4 +79,26 @@ public class VendaRepository {
     public long deletar(Integer venda) {
         return banco.delete(TABLE_VENDA, ID + "=" + venda, null);
     }
+
+    @SuppressLint("Range")
+    public Venda consultarTopEmpresaAno(Integer ano) {
+        String[] columns = new String[]{
+                COMPRA,
+                "sum(" + LUCRO_TOTAL + ") as tmp_lucro_total_venda",
+                DATA_CRIACAO,
+        };
+        Cursor cursor = banco.query(TABLE_VENDA, columns, null, null, "date(" + DATA_CRIACAO + ")", null, LUCRO_TOTAL + " DESC");
+
+        ArrayList<Venda> vendas = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                Venda venda = new Venda();
+                venda.setCompra(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COMPRA))));
+                venda.setLucroTotal(new BigDecimal(cursor.getString(cursor.getColumnIndex("tmp_lucro_total_venda"))));
+                venda.setDataCriacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_CRIACAO))));
+                vendas.add(venda);
+            } while (cursor.moveToNext());
+        }
+        return vendas.isEmpty() ? null : vendas.get(0);
+    }
 }
