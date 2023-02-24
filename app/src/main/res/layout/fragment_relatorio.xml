@@ -7,21 +7,6 @@
     tools:context=".ui.relatorio.fragment.RelatorioFragment">
 
     <TextView
-        android:id="@+id/idFiltroLegendaRelatorio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Filtros"
-        android:textColor="#292929"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.045" />
-
-    <TextView
         android:id="@+id/idAnoLegendaRelatorio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,6 +16,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049" />
+
+    <TextView
+        android:id="@+id/idAnoLegendaRelatorio2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ativo"
+        android:textColor="#404040"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.049" />
@@ -48,18 +47,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.049" />
-
-    <Switch
-        android:id="@+id/idSwitchLegendaRelatorio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vendidos"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.108"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09" />
 
     <View
         android:id="@+id/divider2"
@@ -81,6 +68,20 @@
         android:theme="@style/spinnerTheme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.09" />
+
+    <Spinner
+        android:id="@+id/idSpinnerAtivoRelatorio"
+        android:layout_width="87dp"
+        android:layout_height="26dp"
+        android:backgroundTint="#424242"
+        android:forceDarkAllowed="false"
+        android:theme="@style/spinnerTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.145"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.09" />
