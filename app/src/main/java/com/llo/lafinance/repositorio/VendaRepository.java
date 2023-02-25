@@ -73,6 +73,7 @@ public class VendaRepository {
                 vendas.add(venda);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return vendas;
     }
 
@@ -99,6 +100,7 @@ public class VendaRepository {
                 vendas.add(venda);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return vendas.isEmpty() ? null : vendas.get(0);
     }
 }

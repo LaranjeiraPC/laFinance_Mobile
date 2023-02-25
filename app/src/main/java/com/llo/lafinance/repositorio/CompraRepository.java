@@ -75,6 +75,7 @@ public class CompraRepository {
                 compras.add(compra);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return compras;
     }
 
@@ -90,6 +91,7 @@ public class CompraRepository {
                 compras.add(compra);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return compras.size() > 0;
     }
 
@@ -109,6 +111,7 @@ public class CompraRepository {
                 compra.setDataCriacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_CRIACAO))));
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return compra;
     }
 
@@ -140,6 +143,7 @@ public class CompraRepository {
                 compras.add(compra);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return compras;
     }
 

@@ -14,10 +14,22 @@
         android:text="Nome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.037" />
+
+    <TextView
+        android:id="@+id/idUsuarioLegendaConfiguracao2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lucro líquido mensal(R$)"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.092" />
 
     <EditText
         android:id="@+id/idUsuarioValorConfiguracao"
@@ -27,78 +39,35 @@
         android:ems="8"
         android:hint="Leonardo"
         android:inputType="text"
-        android:textSize="12sp"
         android:textColor="#474747"
         android:textColorHighlight="#1D746D"
         android:textColorHint="#424242"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
 
-    <TextView
-        android:id="@+id/idSenhaLegendaConfiguracao2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Senha"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08" />
-
     <EditText
-        android:id="@+id/idSenhaValorConfiguracao"
+        android:id="@+id/idLucroLiquidoMensalValorConfiguracao"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#2B356E"
         android:ems="8"
-        android:hint="**********"
-        android:inputType="numberPassword"
+        android:hint="000"
+        android:inputType="number"
         android:textColor="#474747"
         android:textColorHighlight="#1D746D"
         android:textColorHint="#424242"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.082" />
-
-    <TextView
-        android:id="@+id/idSenhaConfirmacaoLegendaConfiguracao2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirmar senha"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.141" />
-
-    <EditText
-        android:id="@+id/idSenhaConfirmarValorConfiguracao"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#2B356E"
-        android:ems="8"
-        android:hint="**********"
-        android:inputType="numberPassword"
-        android:textColor="#474747"
-        android:textColorHighlight="#1D746D"
-        android:textColorHint="#424242"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.145" />
 
     <View
         android:id="@+id/divider"

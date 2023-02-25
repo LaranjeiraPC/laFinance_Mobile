@@ -8,9 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.llo.lafinance.config.Conexao;
 import com.llo.lafinance.model.Ativo;
-import com.llo.lafinance.model.Compra;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -64,6 +62,7 @@ public class AtivoRepository {
                 ativos.add(ativo);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return ativos;
     }
 
@@ -79,6 +78,7 @@ public class AtivoRepository {
             ativo.setDescricao(cursor.getString(cursor.getColumnIndex(DESCRICAO)));
             ativo.setDataCriacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_CRIACAO))));
         }
+        cursor.close();
         return ativo;
     }
 
@@ -94,11 +94,12 @@ public class AtivoRepository {
             ativo.setDescricao(cursor.getString(cursor.getColumnIndex(DESCRICAO)));
             ativo.setDataCriacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_CRIACAO))));
         }
+        cursor.close();
         return ativo;
     }
 
     @SuppressLint("Range")
-    public ArrayList<Ativo> consultarAtivos(){
+    public ArrayList<Ativo> consultarAtivos() {
         Cursor cursor = banco.query(TABLE_ATIVO, null, null, null, null, null, null);
 
         ArrayList<Ativo> ativos = new ArrayList<>();
@@ -109,13 +110,14 @@ public class AtivoRepository {
                 ativo.setNome(cursor.getString(cursor.getColumnIndex(NOME)));
                 ativo.setDescricao(cursor.getString(cursor.getColumnIndex(DESCRICAO)));
 
-                if(Objects.nonNull(cursor.getString(cursor.getColumnIndex(DATA_ATUALIZACAO))))
+                if (Objects.nonNull(cursor.getString(cursor.getColumnIndex(DATA_ATUALIZACAO))))
                     ativo.setDataAtualizacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_ATUALIZACAO))));
 
                 ativo.setDataCriacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_CRIACAO))));
                 ativos.add(ativo);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return ativos;
     }
 

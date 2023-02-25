@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Conexao extends SQLiteOpenHelper {
 
     private static final String name = "banco.db";
-    private static final int version = 1;
+    private static final int version = 2;
 
     public Conexao(Context context) {
         super(context, name, null, version);
@@ -44,6 +44,11 @@ public class Conexao extends SQLiteOpenHelper {
         db.execSQL("create table carteira(id integer primary key autoincrement, " +
                 " totalInvestido decimal, lucroLiquidoTotalAno decimal, mesLucroLiquido varchar(5), anoVigor integer, " +
                 " valorMesLucroLiquido decimal, dataCriacao date, dataAtualizacao date)");
+    }
+
+    private void criarTabelaConfiguracao(SQLiteDatabase db) {
+        db.execSQL("create table configuracao(id integer primary key autoincrement, " +
+                " nomeUsuario varchar(20), metaLucroLiquidoMensal decimal, dataCriacao date, dataAtualizacao date)");
     }
 
     @Override

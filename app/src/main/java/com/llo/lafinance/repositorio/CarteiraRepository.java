@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.llo.lafinance.config.Conexao;
 import com.llo.lafinance.model.Carteira;
-import com.llo.lafinance.model.Compra;
-import com.llo.lafinance.model.enums.Status;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -71,6 +69,7 @@ public class CarteiraRepository {
                 carteira.setDataCriacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_CRIACAO))));
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return carteira;
     }
 }

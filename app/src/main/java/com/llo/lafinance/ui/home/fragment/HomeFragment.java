@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.llo.lafinance.databinding.FragmentHomeBinding;
 import com.llo.lafinance.domain.HomeService;
@@ -19,13 +18,14 @@ import com.llo.lafinance.model.Carteira;
 import com.llo.lafinance.model.Compra;
 import com.llo.lafinance.repositorio.CarteiraRepository;
 import com.llo.lafinance.repositorio.CompraRepository;
+import com.llo.lafinance.repositorio.ConfiguracaoRepository;
 import com.llo.lafinance.repositorio.VendaRepository;
-import com.llo.lafinance.ui.home.HomeViewModel;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 
 import java.text.NumberFormat;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,15 +35,15 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private CompraRepository compraRepository;
 
+    private ConfiguracaoRepository configuracaoRepository;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         compraRepository = new CompraRepository(context);
+        configuracaoRepository = new ConfiguracaoRepository(context);
 
         final TextView idBoasVindas = binding.idBoasVindasValorHome;
         final TextView ativo1 = binding.idAtivoUmValorHome;
@@ -64,7 +64,14 @@ public class HomeFragment extends Fragment {
         final TextView iMesLucroLiquidoValorHome = binding.iMesLucroLiquidoValorHome;
         final TextView iMesLucroLiquidoDadoValorHome = binding.iMesLucroLiquidoDadoValorHome;
 
-        homeViewModel.getText().observe(getViewLifecycleOwner(), idBoasVindas::setText);
+        this.definirBoasVindas(idBoasVindas);
+        this.definirDadosExibicao(ativo1, ativo2, ativo3, ativo4, ativo5,
+                idGraficoHome, idUmCampo, idDoisCampo, idTresCampo, idQuatroCampo, idCincoCampo,
+                idTotalInvestidoValorHome, iLucroLiquidoTotalValorHome, iMesLucroLiquidoValorHome, iMesLucroLiquidoDadoValorHome);
+        return root;
+    }
+
+    private void definirDadosExibicao(TextView ativo1, TextView ativo2, TextView ativo3, TextView ativo4, TextView ativo5, PieChart idGraficoHome, LinearLayout idUmCampo, LinearLayout idDoisCampo, LinearLayout idTresCampo, LinearLayout idQuatroCampo, LinearLayout idCincoCampo, TextView idTotalInvestidoValorHome, TextView iLucroLiquidoTotalValorHome, TextView iMesLucroLiquidoValorHome, TextView iMesLucroLiquidoDadoValorHome) {
         List<Compra> compras = this.compraRepository.consultarComprasDisponiveisPorQuantidadeAgrupada();
         this.setData(ativo1, ativo2, ativo3, ativo4, ativo5, idGraficoHome, compras);
         this.desabilitarLayout(ativo1, ativo2, ativo3, ativo4, ativo5, idUmCampo, idDoisCampo, idTresCampo, idQuatroCampo, idCincoCampo);
@@ -72,14 +79,22 @@ public class HomeFragment extends Fragment {
         Carteira carteira = new HomeService(this.compraRepository, new VendaRepository(context), new CarteiraRepository(context)).consultarCarteira();
         if (Objects.nonNull(carteira.getId())) {
             NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
-
             idTotalInvestidoValorHome.setText(numberFormat.format(carteira.getTotalInvestido()));
             iLucroLiquidoTotalValorHome.setText(numberFormat.format(carteira.getLucroLiquidoTotalAno()));
             iMesLucroLiquidoValorHome.setText(carteira.getMesLucroLiquido());
             iMesLucroLiquidoDadoValorHome.setText(numberFormat.format(carteira.getValorMesLucroLiquido()));
         }
+    }
 
-        return root;
+    private void definirBoasVindas(TextView idBoasVindas) {
+        String usuario = this.configuracaoRepository.consultarConfiguracao().getNomeUsuario();
+        if (LocalDateTime.now().getHour() >= 0 && LocalDateTime.now().getHour() <= 11) {
+            idBoasVindas.setText("Bom dia, " + usuario + "!");
+        } else if (LocalDateTime.now().getHour() > 11 && LocalDateTime.now().getHour() < 18) {
+            idBoasVindas.setText("Boa tarde, " + usuario + "!");
+        } else if (LocalDateTime.now().getHour() >= 18) {
+            idBoasVindas.setText("Boa noite, " + usuario + "!");
+        }
     }
 
     private void desabilitarLayout(TextView ativo1, TextView ativo2, TextView ativo3, TextView ativo4, TextView ativo5, LinearLayout idUmCampo, LinearLayout idDoisCampo, LinearLayout idTresCampo, LinearLayout idQuatroCampo, LinearLayout idCincoCampo) {
@@ -100,7 +115,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void setData(TextView ativo1, TextView ativo2, TextView ativo3, TextView ativo4, TextView ativo5, PieChart idGraficoHome, List<Compra> compras) {
-
         for (int i = 0; i < compras.size(); i++) {
             switch (i) {
                 case 0: {

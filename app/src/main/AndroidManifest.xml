@@ -58,6 +58,11 @@
             android:label="@string/title_activity_carteira_fragment"
             android:theme="@style/Theme.LaFinance.NoActionBar" />
         <activity
+            android:name=".ui.home.fragment.HomeFragment"
+            android:exported="false"
+            android:label="@string/title_activity_home_fragment"
+            android:theme="@style/Theme.LaFinance.NoActionBar" />
+        <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">
 <!--            <intent-filter>-->
