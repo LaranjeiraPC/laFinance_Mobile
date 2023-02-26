@@ -9,10 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.llo.lafinance.R;
 import com.llo.lafinance.domain.HomeService;
 import com.llo.lafinance.model.Ativo;
@@ -91,14 +91,12 @@ public class CadastraCompraActivity extends AppCompatActivity implements Adapter
             compra.setPrecoTotal(compra.getPrecoUnitario().multiply(BigDecimal.valueOf(compra.getQuantidade())));
 
             long id = this.compraRepository.inserir(compra);
-            Snackbar.make(view, "Compra realizada com sucesso: " + id, Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Toast.makeText(this, "Compra realizada com sucesso: " + id, Toast.LENGTH_LONG).show();
 
             new HomeService(this.compraRepository, new VendaRepository(this), new CarteiraRepository(this)).atualizarCarteira();
             this.carregarTelaPrincipal();
         } else {
-            Snackbar.make(view, "Necessário preencher todos os campos!", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Toast.makeText(this, "Necessário preencher todos os campos!", Toast.LENGTH_LONG).show();
         }
     }
 

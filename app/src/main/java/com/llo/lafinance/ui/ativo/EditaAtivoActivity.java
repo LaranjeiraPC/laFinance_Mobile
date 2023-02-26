@@ -4,11 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.llo.lafinance.R;
 import com.llo.lafinance.model.Ativo;
 import com.llo.lafinance.repositorio.AtivoRepository;
@@ -56,20 +56,16 @@ public class EditaAtivoActivity extends AppCompatActivity {
 
             boolean existeCompras = compraRepository.consultarComprasPorNomeAtivo(ativo.getNome());
             if (!ativo.getNome().equals(nomeAtivo.getText().toString().toUpperCase()) && existeCompras) {
-                Snackbar.make(view, "Existente compras de ações para o nome do ativo anterior!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Toast.makeText(this, "Existente compras de ações para o nome do ativo anterior!", Toast.LENGTH_LONG).show();
             } else {
                 ativo = this.definirAtivo(ativo, nomeAtivo, descricaoAtivo);
-
                 long id = this.ativoRepository.atualizar(ativo);
-                Snackbar.make(view, "Ativo atualizado com sucesso: " + id, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Toast.makeText(this, "Ativo atualizado com sucesso: " + id, Toast.LENGTH_LONG).show();
 
                 this.retornarTelaPrincipal();
             }
         } else {
-            Snackbar.make(view, "Necessário preencher o campo Nome!", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Toast.makeText(this, "Necessário preencher o campo Nome!", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -85,8 +81,7 @@ public class EditaAtivoActivity extends AppCompatActivity {
     private void validaAtivoExistente(View view) {
         Ativo ativoBanco = this.ativoRepository.consultarAtivo(nomeAtivo.getText().toString());
         if (Objects.nonNull(ativoBanco))
-            Snackbar.make(view, "Ativo já cadastrado: " + ativoBanco.getNome(), Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Toast.makeText(this, "Ativo já cadastrado: " + ativoBanco.getNome(), Toast.LENGTH_LONG).show();
     }
 
     private Ativo definirAtivo(Ativo ativo, EditText nomeAtivo, EditText descricaoAtivo) {

@@ -7,11 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.llo.lafinance.R;
 import com.llo.lafinance.databinding.FragmentConfiguracaoBinding;
 import com.llo.lafinance.model.Configuracao;
@@ -48,8 +48,7 @@ public class ConfiguracaoFragment extends Fragment {
         Button button = root.findViewById(R.id.idSalvarConfiguracao);
         button.setOnClickListener(view -> {
             this.salvar();
-            Snackbar.make(view, "Dados atualizado com sucesso", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Toast.makeText(context, "Dados atualizado com sucesso!", Toast.LENGTH_LONG).show();
         });
 
         return root;

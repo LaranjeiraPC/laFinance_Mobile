@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.llo.lafinance.R;
 import com.llo.lafinance.domain.HomeService;
 import com.llo.lafinance.model.Venda;
@@ -73,15 +73,13 @@ public class CadastraVendaActivity extends AppCompatActivity {
             venda.setLucroTotal(venda.getPrecoTotal().subtract(precoTotalCompra));
 
             long id = this.vendaRepository.inserir(venda);
-            Snackbar.make(view, "Venda realizada com sucesso: " + id, Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Toast.makeText(this, "Venda realizada com sucesso: " + id, Toast.LENGTH_LONG).show();
 
             this.compraRepository.atualizarStatus(idCompra, Status.VENDIDO);
             new HomeService(this.compraRepository, this.vendaRepository, new CarteiraRepository(this)).atualizarCarteira();
             this.carregarTelaPrincipal();
         } else {
-            Snackbar.make(view, "Necessário preencher todos os campos!", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Toast.makeText(this, "Necessário preencher todos os campos!", Toast.LENGTH_LONG).show();
         }
     }
 

@@ -4,14 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.llo.lafinance.R;
-import com.llo.lafinance.ui.principal.PrincipalActivity;
 import com.llo.lafinance.model.Ativo;
 import com.llo.lafinance.repositorio.AtivoRepository;
+import com.llo.lafinance.ui.principal.PrincipalActivity;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -20,6 +20,7 @@ public class CadastraAtivoActivity extends AppCompatActivity {
     private EditText nomeAtivo;
     private EditText descricaoAtivo;
     private AtivoRepository ativoRepository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,20 +38,16 @@ public class CadastraAtivoActivity extends AppCompatActivity {
             Ativo ativo = this.ativoRepository.consultarAtivo(nomeAtivo.getText().toString());
 
             if (Objects.nonNull(ativo)) {
-                Snackbar.make(view, "Ativo já cadastrado: " + ativo.getNome(), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Toast.makeText(this, "Ativo já cadastrado: " + ativo.getNome(), Toast.LENGTH_LONG).show();
             } else {
                 Ativo novoAtivo = this.definirAtivo(nomeAtivo, descricaoAtivo);
 
                 long id = this.ativoRepository.inserir(novoAtivo);
-                Snackbar.make(view, "Ativo cadastrado com sucesso: " + id, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
+                Toast.makeText(this, "Ativo cadastrado com sucesso: " + id, Toast.LENGTH_LONG).show();
                 this.retornarTelaPrincipal();
             }
         } else {
-            Snackbar.make(view, "Necessário preencher o campo Nome!", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Toast.makeText(this, "Necessário preencher o campo Nome!", Toast.LENGTH_LONG).show();
         }
     }
 

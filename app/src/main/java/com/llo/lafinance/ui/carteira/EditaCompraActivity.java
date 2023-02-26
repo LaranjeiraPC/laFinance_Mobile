@@ -4,11 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.llo.lafinance.R;
 import com.llo.lafinance.domain.HomeService;
 import com.llo.lafinance.model.Compra;
@@ -69,14 +69,11 @@ public class EditaCompraActivity extends AppCompatActivity {
             compra.setDataAtualizacao(LocalDate.now());
 
             long id = this.compraRepository.atualizar(compra);
-            Snackbar.make(view, "Compra atualizada com sucesso: " + id, Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-
+            Toast.makeText(this, "Compra atualizada com sucesso: " + id, Toast.LENGTH_LONG).show();
             new HomeService(this.compraRepository, new VendaRepository(this), new CarteiraRepository(this)).atualizarCarteira();
             this.carregarTelaPrincipal();
         } else {
-            Snackbar.make(view, "Necessário preencher todos os campos!", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Toast.makeText(this, "Necessário preencher todos os campos!", Toast.LENGTH_LONG).show();
         }
     }
 
