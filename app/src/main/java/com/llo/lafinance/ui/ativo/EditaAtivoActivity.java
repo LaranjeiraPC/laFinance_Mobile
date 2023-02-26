@@ -6,13 +6,15 @@ import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.llo.lafinance.R;
-import com.llo.lafinance.ui.principal.PrincipalActivity;
 import com.llo.lafinance.model.Ativo;
 import com.llo.lafinance.repositorio.AtivoRepository;
 import com.llo.lafinance.repositorio.CompraRepository;
+import com.llo.lafinance.ui.ativo.fragment.ExcluiAtivoFragment;
+import com.llo.lafinance.ui.principal.PrincipalActivity;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -72,21 +74,12 @@ public class EditaAtivoActivity extends AppCompatActivity {
     }
 
     public void excluir(View view) {
-        Ativo ativo = this.ativoRepository.consultarAtivoPorId(idAtivo);
+        Bundle bundle = new Bundle();
+        bundle.putString("idAtivo", idAtivo.toString());
 
-        boolean existeCompras = compraRepository.consultarComprasPorNomeAtivo(ativo.getNome());
-        if (existeCompras) {
-            Snackbar.make(view, "Existente compras de ações!", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        } else {
-            this.definirAtivo(ativo, nomeAtivo, descricaoAtivo);
-
-            long id = this.ativoRepository.deletar(idAtivo);
-            Snackbar.make(view, "Ativo excluído com sucesso: " + id, Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-
-            this.retornarTelaPrincipal();
-        }
+        DialogFragment dialogFragment = new ExcluiAtivoFragment();
+        dialogFragment.setArguments(bundle);
+        dialogFragment.show(getSupportFragmentManager(), "excluiativo");
     }
 
     private void validaAtivoExistente(View view) {

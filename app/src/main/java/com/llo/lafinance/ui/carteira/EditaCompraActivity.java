@@ -76,7 +76,11 @@ public class EditaCompraActivity extends AppCompatActivity {
     }
 
     public void excluir(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putString("idCompra", id.toString());
+
         DialogFragment excluiCarteiraFragment = new ExcluiCarteiraFragment();
+        excluiCarteiraFragment.setArguments(bundle);
         excluiCarteiraFragment.show(getSupportFragmentManager(), "excluicompra");
     }
 
