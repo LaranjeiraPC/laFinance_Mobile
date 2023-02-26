@@ -29,4 +29,9 @@
     <string name="menu_carteira">Carteira</string>
     <string name="menu_configuracao">Configuração</string>
     <string name="menu_relatorio">Relatório</string>
+
+    <string name="dialog_fragment_titulo_exclui">Deseja excluir o registro?</string>
+    <string name="dialog_fragment_cancela">Cancelar</string>
+    <string name="dialog_fragment_confirma">Confirmar</string>
+    <string name="dialog_fragment_exclui">Excluir</string>
 </resources>

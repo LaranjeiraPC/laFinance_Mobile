@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.llo.lafinance.R;
@@ -14,8 +15,8 @@ import com.llo.lafinance.model.Compra;
 import com.llo.lafinance.repositorio.CarteiraRepository;
 import com.llo.lafinance.repositorio.CompraRepository;
 import com.llo.lafinance.repositorio.VendaRepository;
+import com.llo.lafinance.ui.carteira.fragment.ExcluiCarteiraFragment;
 import com.llo.lafinance.ui.principal.PrincipalActivity;
-import com.llo.lafinance.ui.venda.CadastraVendaActivity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -75,12 +76,8 @@ public class EditaCompraActivity extends AppCompatActivity {
     }
 
     public void excluir(View view) {
-        Compra compra = this.compraRepository.consultarCompraPorId(id);
-        long id = this.compraRepository.deletar(compra.getId());
-        Snackbar.make(view, "Compra excluído com sucesso: " + id, Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-        new HomeService(this.compraRepository, new VendaRepository(this), new CarteiraRepository(this)).atualizarCarteira();
-        this.carregarTelaPrincipal();
+        DialogFragment excluiCarteiraFragment = new ExcluiCarteiraFragment();
+        excluiCarteiraFragment.show(getSupportFragmentManager(), "excluicompra");
     }
 
     public void vender(View view) {
