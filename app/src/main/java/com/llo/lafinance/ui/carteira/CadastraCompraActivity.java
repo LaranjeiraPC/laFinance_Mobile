@@ -34,6 +34,7 @@ public class CadastraCompraActivity extends AppCompatActivity implements Adapter
     private String ativo;
     private EditText quantidade;
     private EditText valorUnitario;
+    private EditText metaPrecoUnitarioVenda;
     private String[] nomeAtivos;
     private CompraRepository compraRepository;
     private AtivoRepository ativoRepository;
@@ -45,6 +46,7 @@ public class CadastraCompraActivity extends AppCompatActivity implements Adapter
 
         quantidade = findViewById(R.id.edittextquantidade);
         valorUnitario = findViewById(R.id.edittextvalorunitario);
+        metaPrecoUnitarioVenda = findViewById(R.id.edittextmetaprecounitariovenda);
 
         compraRepository = new CompraRepository(this);
         ativoRepository = new AtivoRepository(this);
@@ -84,6 +86,7 @@ public class CadastraCompraActivity extends AppCompatActivity implements Adapter
             compra.setStatus(Status.DISPONIVEL);
             compra.setQuantidade(Integer.parseInt(quantidade.getText().toString()));
             compra.setPrecoUnitario(new BigDecimal(valorUnitario.getText().toString()));
+            compra.setMetaPrecoUnitarioVenda(new BigDecimal(metaPrecoUnitarioVenda.getText().toString()));
             compra.setDataCriacao(LocalDate.now());
             compra.setPrecoTotal(compra.getPrecoUnitario().multiply(BigDecimal.valueOf(compra.getQuantidade())));
 

@@ -14,6 +14,7 @@ public class Compra implements Serializable {
     private Integer quantidade;
     private BigDecimal precoUnitario;
     private BigDecimal precoTotal;
+    private BigDecimal metaPrecoUnitarioVenda;
     private LocalDate dataCriacao;
     private LocalDate dataAtualizacao;
 
@@ -79,5 +80,13 @@ public class Compra implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public BigDecimal getMetaPrecoUnitarioVenda() {
+        return metaPrecoUnitarioVenda;
+    }
+
+    public void setMetaPrecoUnitarioVenda(BigDecimal metaPrecoUnitarioVenda) {
+        this.metaPrecoUnitarioVenda = metaPrecoUnitarioVenda;
     }
 }

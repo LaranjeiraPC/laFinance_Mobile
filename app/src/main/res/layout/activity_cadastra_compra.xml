@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ativo"
-        android:textColor="#000000"
+        android:textColor="#273168"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.105"
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quantidade"
-        android:textColor="#000000"
+        android:textColor="#273168"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.12"
@@ -69,8 +69,21 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Meta preço venda"
+        android:textColor="#273168"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.137"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.433" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Valor Unitário"
-        android:textColor="#000000"
+        android:textColor="#273168"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.122"
@@ -96,22 +109,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.36" />
 
-    <Button
-        android:id="@+id/buttonsalvar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="salvar"
-        android:text="Salvar"
-        android:textColor="@color/white"
-        android:visibility="visible"
-        app:backgroundTint="#3E7EDF"
+    <EditText
+        android:id="@+id/edittextmetaprecounitariovenda"
+        android:layout_width="336dp"
+        android:layout_height="49dp"
+        android:backgroundTint="#2B356E"
+        android:ems="10"
+        android:hint="Meta de venda"
+        android:inputType="numberDecimal"
+        android:textColor="#474747"
+        android:textColorHighlight="#1D746D"
+        android:textColorHint="#424242"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.468"
-        tools:visibility="visible" />
+        app:layout_constraintVertical_bias="0.49" />
 
     <Button
         android:id="@+id/buttonCancelarAtivo"
@@ -127,7 +141,24 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.468"
+        app:layout_constraintVertical_bias="0.584"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/buttonsalvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="salvar"
+        android:text="Salvar"
+        android:textColor="@color/white"
+        android:visibility="visible"
+        app:backgroundTint="#3E7EDF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.128"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.584"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

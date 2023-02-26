@@ -26,6 +26,7 @@ public class EditaCompraActivity extends AppCompatActivity {
     private EditText ativo;
     private EditText quantidade;
     private EditText valorUnitario;
+    private EditText metaPrecoUnitarioVenda;
     private Integer id;
     private BigDecimal totalCompra;
     private CompraRepository compraRepository;
@@ -40,16 +41,19 @@ public class EditaCompraActivity extends AppCompatActivity {
         String nome = txtBundle.getString("nomeAtivo");
         String quantidadeCompra = txtBundle.getString("quantidade");
         String valorUnitarioCompra = txtBundle.getString("valorUnitario");
+        String metaPrecoUnitarioVendaCompra = txtBundle.getString("metaPrecoUnitarioVenda");
         String total = txtBundle.getString("totalCompra");
 
         ativo = findViewById(R.id.editTextAtivo);
         quantidade = findViewById(R.id.editTextQuantidade);
         valorUnitario = findViewById(R.id.editTextUnitario);
+        metaPrecoUnitarioVenda = findViewById(R.id.edittextmetaprecounitariovenda);
 
         id = Integer.parseInt(idCompra);
         ativo.setText(nome);
         quantidade.setText(quantidadeCompra);
         valorUnitario.setText(valorUnitarioCompra);
+        metaPrecoUnitarioVenda.setText(metaPrecoUnitarioVendaCompra);
         totalCompra = new BigDecimal(total);
 
         compraRepository = new CompraRepository(this);
@@ -61,6 +65,7 @@ public class EditaCompraActivity extends AppCompatActivity {
             compra.setQuantidade(Integer.parseInt(quantidade.getText().toString()));
             compra.setPrecoUnitario(new BigDecimal(valorUnitario.getText().toString()));
             compra.setPrecoTotal(compra.getPrecoUnitario().multiply(BigDecimal.valueOf(compra.getQuantidade())));
+            compra.setMetaPrecoUnitarioVenda(new BigDecimal(metaPrecoUnitarioVenda.getText().toString()));
             compra.setDataAtualizacao(LocalDate.now());
 
             long id = this.compraRepository.atualizar(compra);

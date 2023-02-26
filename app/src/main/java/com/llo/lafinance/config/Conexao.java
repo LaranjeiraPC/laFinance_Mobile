@@ -19,12 +19,13 @@ public class Conexao extends SQLiteOpenHelper {
         this.criarTabelaAtivo(db);
         this.criarTabelaVenda(db);
         this.criarTabelaCarteira(db);
+        this.criarTabelaConfiguracao(db);
     }
 
     private void criarTabelaCompra(SQLiteDatabase db) {
         db.execSQL("create table compra(id integer primary key autoincrement, " +
                 " ativo varchar(6), status varchar(1), quantidade integer, " +
-                " precoUnitario decimal, precoTotal decimal, dataCriacao date," +
+                " precoUnitario decimal, metaPrecoUnitarioVenda decimal, precoTotal decimal, dataCriacao date," +
                 " dataAtualizacao date)");
     }
 

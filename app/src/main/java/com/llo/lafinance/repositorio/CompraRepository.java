@@ -13,6 +13,7 @@ import com.llo.lafinance.model.enums.Status;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class CompraRepository {
 
@@ -22,6 +23,7 @@ public class CompraRepository {
     public static final String DATA_ATUALIZACAO = "dataAtualizacao";
     public static final String PRECO_TOTAL = "precoTotal";
     public static final String PRECO_UNITARIO = "precoUnitario";
+    public static final String META_PRECO_UNIARIO_VENDA = "metaPrecoUnitarioVenda";
     public static final String QUANTIDADE = "quantidade";
     public static final String STATUS = "status";
     public static final String ATIVO = "ativo";
@@ -29,8 +31,6 @@ public class CompraRepository {
     public static final String ASC = "ASC";
     private Conexao conexao;
     private SQLiteDatabase banco;
-
-    private static final String[] LINHAS = {ID, ATIVO, STATUS, QUANTIDADE, PRECO_UNITARIO, PRECO_TOTAL, DATA_CRIACAO, DATA_ATUALIZACAO};
 
     public CompraRepository(Context context) {
         conexao = new Conexao(context);
@@ -44,6 +44,7 @@ public class CompraRepository {
         contentValues.put(QUANTIDADE, compra.getQuantidade());
         contentValues.put(PRECO_UNITARIO, compra.getPrecoUnitario().toString());
         contentValues.put(PRECO_TOTAL, compra.getPrecoTotal().toString());
+        contentValues.put(META_PRECO_UNIARIO_VENDA, compra.getMetaPrecoUnitarioVenda().toString());
         contentValues.put(DATA_CRIACAO, compra.getDataCriacao().toString());
         return banco.insert(TABLE_COMPRA, null, contentValues);
     }
@@ -53,6 +54,7 @@ public class CompraRepository {
         contentValues.put(QUANTIDADE, compra.getQuantidade());
         contentValues.put(PRECO_UNITARIO, compra.getPrecoUnitario().toString());
         contentValues.put(PRECO_TOTAL, compra.getPrecoTotal().toString());
+        contentValues.put(META_PRECO_UNIARIO_VENDA, compra.getMetaPrecoUnitarioVenda().toString());
         contentValues.put(DATA_ATUALIZACAO, compra.getDataAtualizacao().toString());
         return banco.update(TABLE_COMPRA, contentValues, ID + " = ?", new String[]{compra.getId().toString()});
     }
@@ -69,6 +71,7 @@ public class CompraRepository {
                 compra.setAtivo(cursor.getString(cursor.getColumnIndex(ATIVO)));
                 compra.setQuantidade(Integer.parseInt(cursor.getString(cursor.getColumnIndex(QUANTIDADE))));
                 compra.setPrecoUnitario(new BigDecimal(cursor.getString(cursor.getColumnIndex(PRECO_UNITARIO))));
+                compra.setMetaPrecoUnitarioVenda(new BigDecimal(Objects.isNull(cursor.getString(cursor.getColumnIndex(META_PRECO_UNIARIO_VENDA))) ? "0.00" : cursor.getString(cursor.getColumnIndex(META_PRECO_UNIARIO_VENDA))));
                 compra.setPrecoTotal(new BigDecimal(cursor.getString(cursor.getColumnIndex(PRECO_TOTAL))));
                 compra.setStatus(Status.valueOf(cursor.getString(cursor.getColumnIndex(STATUS))));
                 compra.setDataCriacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_CRIACAO))));
@@ -106,6 +109,7 @@ public class CompraRepository {
                 compra.setAtivo(cursor.getString(cursor.getColumnIndex(ATIVO)));
                 compra.setQuantidade(Integer.parseInt(cursor.getString(cursor.getColumnIndex(QUANTIDADE))));
                 compra.setPrecoUnitario(new BigDecimal(cursor.getString(cursor.getColumnIndex(PRECO_UNITARIO))));
+                compra.setMetaPrecoUnitarioVenda(new BigDecimal(Objects.isNull(cursor.getString(cursor.getColumnIndex(META_PRECO_UNIARIO_VENDA))) ? "0.00" : cursor.getString(cursor.getColumnIndex(META_PRECO_UNIARIO_VENDA))));
                 compra.setPrecoTotal(new BigDecimal(cursor.getString(cursor.getColumnIndex(PRECO_TOTAL))));
                 compra.setStatus(Status.valueOf(cursor.getString(cursor.getColumnIndex(STATUS))));
                 compra.setDataCriacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_CRIACAO))));
