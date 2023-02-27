@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">LaFinance</string>
     <string name="title_activity_cadastra_compra">CadastraCompraActivity</string>
+    <string name="title_activity_cadastra_venda">CadastraVendaActivity</string>
+    <string name="title_activity_edita_compra">EditaCompraActivity</string>
+    <string name="title_activity_carteira_fragment">CarteiraFragment</string>
+    <string name="title_activity_home_fragment">HomeFragment</string>
+    <string name="title_activity_cadastra_ativo">CadastraAtivoActivity</string>
+    <string name="title_activity_edita_ativo">EditaAtivoActivity</string>
+    <string name="title_activity_cancela_ativo">CadastraAtivoActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -22,4 +29,9 @@
     <string name="menu_carteira">Carteira</string>
     <string name="menu_configuracao">Configuração</string>
     <string name="menu_relatorio">Relatório</string>
+
+    <string name="dialog_fragment_titulo_exclui">Deseja excluir o registro?</string>
+    <string name="dialog_fragment_cancela">Cancelar</string>
+    <string name="dialog_fragment_confirma">Confirmar</string>
+    <string name="dialog_fragment_exclui">Excluir</string>
 </resources>

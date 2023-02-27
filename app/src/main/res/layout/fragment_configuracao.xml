@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.configuracao.fragment.ConfiguracaoFragment"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/idUsuarioLegendaConfiguracao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.037" />
+
+    <TextView
+        android:id="@+id/idUsuarioLegendaConfiguracao2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lucro líquido mensal(R$)"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.092" />
+
+    <EditText
+        android:id="@+id/idUsuarioValorConfiguracao"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#2B356E"
+        android:ems="8"
+        android:hint="Leonardo"
+        android:inputType="text"
+        android:textColor="#474747"
+        android:textColorHighlight="#1D746D"
+        android:textColorHint="#424242"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <EditText
+        android:id="@+id/idLucroLiquidoMensalValorConfiguracao"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#2B356E"
+        android:ems="8"
+        android:hint="000"
+        android:inputType="number"
+        android:textColor="#474747"
+        android:textColorHighlight="#1D746D"
+        android:textColorHint="#424242"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.082" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="409dp"
+        android:layout_height="3dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.23" />
+
+    <Button
+        android:id="@+id/idSalvarConfiguracao"
+        android:layout_width="85dp"
+        android:layout_height="45dp"
+        android:onClick="salvar"
+        android:text="salvar"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:visibility="visible"
+        app:backgroundTint="#3E7EDF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.164"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>

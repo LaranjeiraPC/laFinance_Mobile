@@ -1,20 +1,17 @@
 package com.llo.lafinance.model;
 
-import com.llo.lafinance.model.enums.Status;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Compra implements Serializable {
+public class Venda implements Serializable {
 
     private Integer id;
-    private String ativo;
-    private Status status;
+    private Integer compra;
     private Integer quantidade;
     private BigDecimal precoUnitario;
     private BigDecimal precoTotal;
-    private BigDecimal metaPrecoUnitarioVenda;
+    private BigDecimal lucroTotal;
     private LocalDate dataCriacao;
     private LocalDate dataAtualizacao;
 
@@ -26,12 +23,12 @@ public class Compra implements Serializable {
         this.id = id;
     }
 
-    public String getAtivo() {
-        return ativo;
+    public Integer getCompra() {
+        return compra;
     }
 
-    public void setAtivo(String ativo) {
-        this.ativo = ativo;
+    public void setCompra(Integer compra) {
+        this.compra = compra;
     }
 
     public Integer getQuantidade() {
@@ -50,6 +47,14 @@ public class Compra implements Serializable {
         this.precoUnitario = precoUnitario;
     }
 
+    public BigDecimal getPrecoTotal() {
+        return precoTotal;
+    }
+
+    public void setPrecoTotal(BigDecimal precoTotal) {
+        this.precoTotal = precoTotal;
+    }
+
     public LocalDate getDataCriacao() {
         return dataCriacao;
     }
@@ -66,27 +71,11 @@ public class Compra implements Serializable {
         this.dataAtualizacao = dataAtualizacao;
     }
 
-    public BigDecimal getPrecoTotal() {
-        return precoTotal;
+    public BigDecimal getLucroTotal() {
+        return lucroTotal;
     }
 
-    public void setPrecoTotal(BigDecimal precoTotal) {
-        this.precoTotal = precoTotal;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public BigDecimal getMetaPrecoUnitarioVenda() {
-        return metaPrecoUnitarioVenda;
-    }
-
-    public void setMetaPrecoUnitarioVenda(BigDecimal metaPrecoUnitarioVenda) {
-        this.metaPrecoUnitarioVenda = metaPrecoUnitarioVenda;
+    public void setLucroTotal(BigDecimal lucroTotal) {
+        this.lucroTotal = lucroTotal;
     }
 }

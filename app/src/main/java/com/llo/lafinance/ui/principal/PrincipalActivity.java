@@ -1,22 +1,21 @@
-package com.llo.lafinance.activity;
+package com.llo.lafinance.ui.principal;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
+import android.view.View;
 
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.navigation.NavigationView;
 import com.llo.lafinance.R;
 import com.llo.lafinance.databinding.ActivityPrincipalBinding;
+import com.llo.lafinance.ui.carteira.CadastraCompraActivity;
 
 public class PrincipalActivity extends AppCompatActivity {
 
@@ -34,10 +33,9 @@ public class PrincipalActivity extends AppCompatActivity {
         binding.appBarPrincipal.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
                 Intent intent = new Intent(PrincipalActivity.this, CadastraCompraActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -46,7 +44,7 @@ public class PrincipalActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_carteira, R.id.nav_relatorio)
+                R.id.nav_home, R.id.nav_carteira, R.id.nav_relatorio, R.id.nav_ativo, R.id.nav_configuracao)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_principal);

@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import com.llo.lafinance.R;
 import com.llo.lafinance.model.Compra;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +34,9 @@ public class CarteiraAdapter extends ArrayAdapter<Compra> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItem = convertView;
-        if(listItem == null)
-            listItem = LayoutInflater.from(mContext).inflate(R.layout.list_item_compra,parent,false);
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
+        if (listItem == null)
+            listItem = LayoutInflater.from(mContext).inflate(R.layout.list_item_compra, parent, false);
 
         Compra compraAtiva = CompraList.get(position);
 
@@ -45,10 +47,10 @@ public class CarteiraAdapter extends ArrayAdapter<Compra> {
         quantidade.setText(compraAtiva.getQuantidade().toString());
 
         TextView precoAtivo = listItem.findViewById(R.id.textView_preco_ativo);
-        precoAtivo.setText("R$" + compraAtiva.getPrecoUnitario().toString());
+        precoAtivo.setText(numberFormat.format(compraAtiva.getPrecoUnitario()));
 
         TextView total = listItem.findViewById(R.id.textView_total);
-        total.setText("R$" + compraAtiva.getPrecoTotal().toString());
+        total.setText(numberFormat.format(compraAtiva.getPrecoTotal()));
 
         return listItem;
     }

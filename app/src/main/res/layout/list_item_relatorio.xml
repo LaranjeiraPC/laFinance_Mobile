@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDFFFC">
+
+    <TextView
+        android:id="@+id/idAtivoLegendaRelatorio"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Ativo"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/idAtivoValorRelatorio"
+        android:layout_width="55dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="MGLU3"
+        android:textAlignment="center"
+        android:textColor="#1D61C6"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/idCompraLegendaRelatorio"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Compra"
+        android:textAlignment="textStart"
+        android:textColor="#443160"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/idQuantidadeCompraLegendaRelatorio"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Quantidade"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/idQuantidadeValorCompraRelatorio"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="textStart"
+        android:hint="0000"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:id="@+id/idUnitarioCompraLegendaRelatorio"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="135dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Valor Unitário"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/idUnitarioValorCompraRelatorio"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="215dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="textStart"
+        android:hint="30.99"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:id="@+id/idTotalCompraLegendaRelatorio"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Total"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/idTotalValorCompraRelatorio"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="textStart"
+        android:hint="90000"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:id="@+id/idVendaLegendaRelatorio"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Venda"
+        android:textAlignment="textStart"
+        android:textColor="#443160"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/idQuantidadeVendaLegendaRelatorio"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Quantidade"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/idQuantidadeValorVendaRelatorio"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="textStart"
+        android:hint="0000"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:id="@+id/idUnitarioVendaLegendaRelatorio"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="135dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Valor Unitário"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/idUnitarioValorVendaRelatorio"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="215dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="textStart"
+        android:hint="30.99"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:id="@+id/idTotalVendaLegendaRelatorio"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Total"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/idTotalValorVendaRelatorio"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="textStart"
+        android:hint="90000"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:id="@+id/idDetalheLegendaRelatorio"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="135dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Lucro total"
+        android:textAlignment="textStart"
+        android:textColor="#443160"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/idTotalValorDetalheRelatorio"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="135dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="textStart"
+        android:hint="0000"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:id="@+id/idDataCompraDetalheLegendaRelatorio"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="135dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Data C."
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/idDataCompraValorDetalheRelatorio"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="textStart"
+        android:hint="05/05/2022"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:id="@+id/idDataVendaDetalheLegendaRelatorio"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="135dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Data v."
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/idDataVendaValorDetalheRelatorio"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="textStart"
+        android:hint="05/05/2022"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        />
+
+</RelativeLayout>

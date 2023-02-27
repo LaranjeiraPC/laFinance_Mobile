@@ -1,8 +1,10 @@
-package com.llo.lafinance;
+package com.llo.lafinance.ui.main;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.llo.lafinance.R;
 
 public class MainActivity extends AppCompatActivity {
 
