@@ -30,11 +30,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class HomeFragment extends Fragment {
-
     private Context context;
     private FragmentHomeBinding binding;
     private CompraRepository compraRepository;
-
     private ConfiguracaoRepository configuracaoRepository;
 
     public View onCreateView(@NonNull LayoutInflater inflater,

@@ -13,6 +13,7 @@ import com.llo.lafinance.model.enums.Status;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Objects;
 
 public class CompraRepository {
@@ -148,6 +149,7 @@ public class CompraRepository {
             } while (cursor.moveToNext());
         }
         cursor.close();
+        compras.sort(Comparator.comparing(Compra::getQuantidade).reversed());
         return compras;
     }
 
