@@ -36,14 +36,12 @@ public class CadastraAtivoActivity extends AppCompatActivity {
         if (Objects.nonNull(nomeAtivo) && nomeAtivo.getText().length() > 0) {
 
             Ativo ativo = this.ativoRepository.consultarAtivo(nomeAtivo.getText().toString());
-
             if (Objects.nonNull(ativo)) {
                 Toast.makeText(this, "Ativo já cadastrado: " + ativo.getNome(), Toast.LENGTH_LONG).show();
             } else {
                 Ativo novoAtivo = this.definirAtivo(nomeAtivo, descricaoAtivo);
-
-                long id = this.ativoRepository.inserir(novoAtivo);
-                Toast.makeText(this, "Ativo cadastrado com sucesso: " + id, Toast.LENGTH_LONG).show();
+                this.ativoRepository.inserir(novoAtivo);
+                Toast.makeText(this, "Ativo cadastrado com sucesso!", Toast.LENGTH_LONG).show();
                 this.retornarTelaPrincipal();
             }
         } else {

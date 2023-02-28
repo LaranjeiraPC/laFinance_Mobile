@@ -50,7 +50,7 @@ public class EditaAtivoActivity extends AppCompatActivity {
 
     public void salvar(View view) {
         if (Objects.nonNull(nomeAtivo) && nomeAtivo.getText().length() > 0) {
-            this.validaAtivoExistente(view);
+            this.validaAtivoExistente();
 
             Ativo ativo = this.ativoRepository.consultarAtivoPorId(idAtivo);
 
@@ -58,10 +58,9 @@ public class EditaAtivoActivity extends AppCompatActivity {
             if (!ativo.getNome().equals(nomeAtivo.getText().toString().toUpperCase()) && existeCompras) {
                 Toast.makeText(this, "Existente compras de ações para o nome do ativo anterior!", Toast.LENGTH_LONG).show();
             } else {
-                ativo = this.definirAtivo(ativo, nomeAtivo, descricaoAtivo);
-                long id = this.ativoRepository.atualizar(ativo);
-                Toast.makeText(this, "Ativo atualizado com sucesso: " + id, Toast.LENGTH_LONG).show();
-
+                this.definirAtivo(ativo, nomeAtivo, descricaoAtivo);
+                this.ativoRepository.atualizar(ativo);
+                Toast.makeText(this, "Ativo atualizado com sucesso!", Toast.LENGTH_LONG).show();
                 this.retornarTelaPrincipal();
             }
         } else {
@@ -78,17 +77,16 @@ public class EditaAtivoActivity extends AppCompatActivity {
         dialogFragment.show(getSupportFragmentManager(), "excluiativo");
     }
 
-    private void validaAtivoExistente(View view) {
+    private void validaAtivoExistente() {
         Ativo ativoBanco = this.ativoRepository.consultarAtivo(nomeAtivo.getText().toString());
         if (Objects.nonNull(ativoBanco))
             Toast.makeText(this, "Ativo já cadastrado: " + ativoBanco.getNome(), Toast.LENGTH_LONG).show();
     }
 
-    private Ativo definirAtivo(Ativo ativo, EditText nomeAtivo, EditText descricaoAtivo) {
+    private void definirAtivo(Ativo ativo, EditText nomeAtivo, EditText descricaoAtivo) {
         ativo.setNome(nomeAtivo.getText().toString());
         ativo.setDescricao(descricaoAtivo.getText().toString());
         ativo.setDataAtualizacao(LocalDate.now());
-        return ativo;
     }
 
     private void retornarTelaPrincipal() {

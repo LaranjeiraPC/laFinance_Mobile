@@ -26,11 +26,11 @@ public class PrincipalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityPrincipalBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        this.binding = ActivityPrincipalBinding.inflate(getLayoutInflater());
+        setContentView(this.binding.getRoot());
 
-        setSupportActionBar(binding.appBarPrincipal.toolbar);
-        binding.appBarPrincipal.fab.setOnClickListener(new View.OnClickListener() {
+        setSupportActionBar(this.binding.appBarPrincipal.toolbar);
+        this.binding.appBarPrincipal.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PrincipalActivity.this, CadastraCompraActivity.class);
@@ -43,12 +43,12 @@ public class PrincipalActivity extends AppCompatActivity {
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
+        this.mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_carteira, R.id.nav_relatorio, R.id.nav_ativo, R.id.nav_configuracao)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_principal);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupActionBarWithNavController(this, navController, this.mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
@@ -62,7 +62,7 @@ public class PrincipalActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_principal);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+        return NavigationUI.navigateUp(navController, this.mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
 }

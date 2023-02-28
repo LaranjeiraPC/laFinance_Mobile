@@ -35,9 +35,9 @@ public class RelatorioFragment extends Fragment {
 
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
 
-        ArrayList<Venda> vendas = new VendaRepository(context).consultarVendas();
+        ArrayList<Venda> vendas = new VendaRepository(this.context).consultarVendas();
         List<Relatorio> relatorio = vendas.stream().map(v -> {
-            Compra compra = new CompraRepository(context).consultarCompraPorId(v.getCompra());
+            Compra compra = new CompraRepository(this.context).consultarCompraPorId(v.getCompra());
             Relatorio relatorioTemp = new Relatorio();
             relatorioTemp.setAtivo(compra.getAtivo());
             relatorioTemp.setQuantidadeCompra(compra.getQuantidade());
@@ -52,11 +52,11 @@ public class RelatorioFragment extends Fragment {
             return relatorioTemp;
         }).collect(Collectors.toList());
 
-        binding = FragmentRelatorioBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        this.binding = FragmentRelatorioBinding.inflate(inflater, container, false);
+        View root = this.binding.getRoot();
 
-        final ListView listViewRelatorio = binding.idlistViewRelatorio;
-        final TextView idTotalValorRelatorio = binding.idTotalValorRelatorio;
+        final ListView listViewRelatorio = this.binding.idlistViewRelatorio;
+        final TextView idTotalValorRelatorio = this.binding.idTotalValorRelatorio;
         idTotalValorRelatorio.setText(numberFormat.format(relatorio.stream().map(Relatorio::getLucroTotal).reduce(BigDecimal.ZERO, BigDecimal::add)));
 
         this.definirRelatorio(listViewRelatorio, new ArrayList<>(relatorio));
@@ -64,18 +64,18 @@ public class RelatorioFragment extends Fragment {
     }
 
     private void definirRelatorio(ListView listViewRelatorio, ArrayList<Relatorio> relatorio) {
-        RelatorioAdapter relatorioAdapter = new RelatorioAdapter(context, relatorio);
+        RelatorioAdapter relatorioAdapter = new RelatorioAdapter(this.context, relatorio);
         listViewRelatorio.setAdapter(relatorioAdapter);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        this.binding = null;
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         this.context = context;
         super.onAttach(context);
     }

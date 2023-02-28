@@ -30,13 +30,13 @@ public class CarteiraFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        ArrayList<Compra> compras = new CompraRepository(context).consultarComprasAtivas();
+        ArrayList<Compra> compras = new CompraRepository(this.context).consultarComprasAtivas();
 
-        binding = FragmentCarteiraBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        this.binding = FragmentCarteiraBinding.inflate(inflater, container, false);
+        View root = this.binding.getRoot();
 
-        final TextView carteiraTotalTextView = binding.idCarteiraTotal;
-        final ListView carteira = binding.listViewCarteira;
+        final TextView carteiraTotalTextView = this.binding.idCarteiraTotal;
+        final ListView carteira = this.binding.listViewCarteira;
         this.carregarEditaActivity(compras, carteira);
 
         this.definirPrecoTotalAtivos(carteiraTotalTextView, compras);
@@ -47,12 +47,12 @@ public class CarteiraFragment extends Fragment {
 
     private void definirPrecoTotalAtivos(TextView carteiraTotalTextView, ArrayList<Compra> compras) {
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
-        BigDecimal precoTotalAtivos = compras.stream().map(c -> c.getPrecoTotal()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal precoTotalAtivos = compras.stream().map(Compra::getPrecoTotal).reduce(BigDecimal.ZERO, BigDecimal::add);
         carteiraTotalTextView.setText(numberFormat.format(precoTotalAtivos));
     }
 
     private void definirListaCompras(ListView carteira, ArrayList<Compra> compras) {
-        CarteiraAdapter carteiraAdapter = new CarteiraAdapter(context, compras);
+        CarteiraAdapter carteiraAdapter = new CarteiraAdapter(this.context, compras);
         carteira.setAdapter(carteiraAdapter);
     }
 
@@ -60,7 +60,7 @@ public class CarteiraFragment extends Fragment {
         compraListView.setOnItemClickListener((parent, view, position, id) -> {
             Compra compraTemp = Compras.get(position);
 
-            Intent intent = new Intent(context, EditaCompraActivity.class);
+            Intent intent = new Intent(this.context, EditaCompraActivity.class);
 
             Bundle txtBundle = new Bundle();
             txtBundle.putString("id", compraTemp.getId().toString());
@@ -82,7 +82,7 @@ public class CarteiraFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         this.context = context;
         super.onAttach(context);
     }

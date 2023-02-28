@@ -21,54 +21,32 @@ public class AtivoRepository {
     public static final String DESCRICAO = "descricao";
     public static final String DATA_CRIACAO = "dataCriacao";
     public static final String DATA_ATUALIZACAO = "dataAtualizacao";
-    private Conexao conexao;
-    private SQLiteDatabase banco;
-
-    private static final String[] LINHAS = {ID, NOME, DESCRICAO, DATA_CRIACAO, DATA_ATUALIZACAO};
+    private final SQLiteDatabase banco;
 
     public AtivoRepository(Context context) {
-        conexao = new Conexao(context);
-        banco = conexao.getWritableDatabase();
+        Conexao conexao = new Conexao(context);
+        this.banco = conexao.getWritableDatabase();
     }
 
-    public long inserir(Ativo ativo) {
+    public void inserir(Ativo ativo) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(NOME, ativo.getNome().toUpperCase());
         contentValues.put(DESCRICAO, ativo.getDescricao().toUpperCase());
         contentValues.put(DATA_CRIACAO, ativo.getDataCriacao().toString());
-        return banco.insert(TABLE_ATIVO, null, contentValues);
+        this.banco.insert(TABLE_ATIVO, null, contentValues);
     }
 
-    public long atualizar(Ativo ativo) {
+    public void atualizar(Ativo ativo) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(NOME, ativo.getNome().toUpperCase());
         contentValues.put(DESCRICAO, ativo.getDescricao().toUpperCase());
         contentValues.put(DATA_ATUALIZACAO, ativo.getDataAtualizacao().toString());
-        return banco.update(TABLE_ATIVO, contentValues, ID + " = ?", new String[]{ativo.getId().toString()});
-    }
-
-    @SuppressLint("Range")
-    public ArrayList<Ativo> listarAtivos() {
-        Cursor cursor = banco.query(TABLE_ATIVO, null, null, null, null, null, null);
-
-        ArrayList<Ativo> ativos = new ArrayList<>();
-        if (cursor.moveToFirst()) {
-            do {
-                Ativo ativo = new Ativo();
-                ativo.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(ID))));
-                ativo.setNome(cursor.getString(cursor.getColumnIndex(NOME)));
-                ativo.setDescricao(cursor.getString(cursor.getColumnIndex(DESCRICAO)));
-                ativo.setDataCriacao(LocalDate.parse(cursor.getString(cursor.getColumnIndex(DATA_CRIACAO))));
-                ativos.add(ativo);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return ativos;
+        this.banco.update(TABLE_ATIVO, contentValues, ID + " = ?", new String[]{ativo.getId().toString()});
     }
 
     @SuppressLint("Range")
     public Ativo consultarAtivo(String nome) {
-        Cursor cursor = banco.query(TABLE_ATIVO, null, NOME + " LIKE " + "'" + nome + "'", null, null, null, null);
+        Cursor cursor = this.banco.query(TABLE_ATIVO, null, NOME + " LIKE " + "'" + nome + "'", null, null, null, null);
 
         Ativo ativo = null;
         if (cursor.moveToFirst()) {
@@ -84,7 +62,7 @@ public class AtivoRepository {
 
     @SuppressLint("Range")
     public Ativo consultarAtivoPorId(Integer id) {
-        Cursor cursor = banco.query(TABLE_ATIVO, null, ID + " LIKE " + "'" + id + "'", null, null, null, null);
+        Cursor cursor = this.banco.query(TABLE_ATIVO, null, ID + " LIKE " + "'" + id + "'", null, null, null, null);
 
         Ativo ativo = null;
         if (cursor.moveToFirst()) {
@@ -100,7 +78,7 @@ public class AtivoRepository {
 
     @SuppressLint("Range")
     public ArrayList<Ativo> consultarAtivos() {
-        Cursor cursor = banco.query(TABLE_ATIVO, null, null, null, null, null, null);
+        Cursor cursor = this.banco.query(TABLE_ATIVO, null, null, null, null, null, null);
 
         ArrayList<Ativo> ativos = new ArrayList<>();
         if (cursor.moveToFirst()) {
@@ -121,7 +99,7 @@ public class AtivoRepository {
         return ativos;
     }
 
-    public long deletar(Integer ativo) {
-        return banco.delete(TABLE_ATIVO, ID + "=" + ativo, null);
+    public void deletar(Integer ativo) {
+        this.banco.delete(TABLE_ATIVO, ID + "=" + ativo, null);
     }
 }

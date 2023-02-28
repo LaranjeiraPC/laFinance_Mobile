@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.llo.lafinance.R;
-import com.llo.lafinance.domain.HomeService;
+import com.llo.lafinance.domain.service.HomeService;
 import com.llo.lafinance.model.Venda;
 import com.llo.lafinance.model.enums.Status;
 import com.llo.lafinance.repositorio.CarteiraRepository;
@@ -38,44 +38,39 @@ public class CadastraVendaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastra_venda);
 
         Bundle txtBundle = getIntent().getExtras();
-        String idCompraTemp = txtBundle.getString("idCompra");
-        String nomeAtivoCompraTemp = txtBundle.getString("nomeAtivoCompra");
-        String quantidadeCompraTemp = txtBundle.getString("quantidadeCompra");
-        String precoUnitarioCompraTemp = txtBundle.getString("precoUnitarioCompra");
-        String precoTotalCompraTemp = txtBundle.getString("precoTotalCompra");
 
-        nomeAtivo = findViewById(R.id.editTextAtivoCompraVenda);
-        quantidadeCompra = findViewById(R.id.editTextQuantidadeValorCompraVenda);
-        precoUnitarioCompra = findViewById(R.id.editTextPrecoUnitarioValorCompraVenda);
-        precoTotalCompra = findViewById(R.id.editTextTotalValorCompraVenda);
-        quantidadeVenda = findViewById(R.id.editTextQuantidadeValorVenda);
-        precoUnitarioVenda = findViewById(R.id.editTextValorUnitarioValorVenda);
+        this.nomeAtivo = findViewById(R.id.editTextAtivoCompraVenda);
+        this.quantidadeCompra = findViewById(R.id.editTextQuantidadeValorCompraVenda);
+        this.precoUnitarioCompra = findViewById(R.id.editTextPrecoUnitarioValorCompraVenda);
+        this.precoTotalCompra = findViewById(R.id.editTextTotalValorCompraVenda);
+        this.quantidadeVenda = findViewById(R.id.editTextQuantidadeValorVenda);
+        this.precoUnitarioVenda = findViewById(R.id.editTextValorUnitarioValorVenda);
 
-        idCompra = Integer.parseInt(idCompraTemp);
-        nomeAtivo.setText(nomeAtivoCompraTemp);
-        quantidadeCompra.setText(quantidadeCompraTemp);
-        precoUnitarioCompra.setText(precoUnitarioCompraTemp);
-        precoTotalCompra.setText(precoTotalCompraTemp);
+        this.idCompra = Integer.parseInt(txtBundle.getString("idCompra"));
+        this.nomeAtivo.setText(txtBundle.getString("nomeAtivoCompra"));
+        this.quantidadeCompra.setText(txtBundle.getString("quantidadeCompra"));
+        this.precoUnitarioCompra.setText(txtBundle.getString("precoUnitarioCompra"));
+        this.precoTotalCompra.setText(txtBundle.getString("precoTotalCompra"));
 
-        compraRepository = new CompraRepository(this);
-        vendaRepository = new VendaRepository(this);
+        this.compraRepository = new CompraRepository(this);
+        this.vendaRepository = new VendaRepository(this);
     }
 
     public void salvar(View view) {
-        if (quantidadeVenda.getText().length() > 0 && precoUnitarioVenda.getText().length() > 0) {
-            BigDecimal precoTotalCompra = this.compraRepository.consultarCompraPorId(idCompra).getPrecoTotal();
+        if (this.quantidadeVenda.getText().length() > 0 && this.precoUnitarioVenda.getText().length() > 0) {
+            BigDecimal precoTotalCompra = this.compraRepository.consultarCompraPorId(this.idCompra).getPrecoTotal();
             Venda venda = new Venda();
             venda.setCompra(idCompra);
-            venda.setQuantidade(Integer.parseInt(quantidadeVenda.getText().toString()));
-            venda.setPrecoUnitario(new BigDecimal(precoUnitarioVenda.getText().toString()));
+            venda.setQuantidade(Integer.parseInt(this.quantidadeVenda.getText().toString()));
+            venda.setPrecoUnitario(new BigDecimal(this.precoUnitarioVenda.getText().toString()));
             venda.setDataCriacao(LocalDate.now());
             venda.setPrecoTotal(venda.getPrecoUnitario().multiply(BigDecimal.valueOf(venda.getQuantidade())));
             venda.setLucroTotal(venda.getPrecoTotal().subtract(precoTotalCompra));
 
-            long id = this.vendaRepository.inserir(venda);
-            Toast.makeText(this, "Venda realizada com sucesso: " + id, Toast.LENGTH_LONG).show();
+            this.vendaRepository.inserir(venda);
+            Toast.makeText(this, "Venda realizada com sucesso!", Toast.LENGTH_LONG).show();
 
-            this.compraRepository.atualizarStatus(idCompra, Status.VENDIDO);
+            this.compraRepository.atualizarStatus(this.idCompra, Status.VENDIDO);
             new HomeService(this.compraRepository, this.vendaRepository, new CarteiraRepository(this)).atualizarCarteira();
             this.carregarTelaPrincipal();
         } else {

@@ -1,5 +1,6 @@
 package com.llo.lafinance.ui.configuracao.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,31 +25,31 @@ public class ConfiguracaoFragment extends Fragment {
 
     private Context context;
     private FragmentConfiguracaoBinding binding;
-
     private TextView idLucroLiquidoMensalValorConfiguracao;
     private TextView idUsuarioValorConfiguracao;
     private ConfiguracaoRepository configuracaoRepository;
 
+    @SuppressLint("SetTextI18n")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        binding = FragmentConfiguracaoBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        this.binding = FragmentConfiguracaoBinding.inflate(inflater, container, false);
+        View root = this.binding.getRoot();
 
-        this.configuracaoRepository = new ConfiguracaoRepository(context);
+        this.configuracaoRepository = new ConfiguracaoRepository(this.context);
 
         Configuracao configuracao = this.configuracaoRepository.consultarConfiguracao();
 
-        idLucroLiquidoMensalValorConfiguracao = binding.idLucroLiquidoMensalValorConfiguracao;
-        idUsuarioValorConfiguracao = binding.idUsuarioValorConfiguracao;
+        this.idLucroLiquidoMensalValorConfiguracao = this.binding.idLucroLiquidoMensalValorConfiguracao;
+        this.idUsuarioValorConfiguracao = this.binding.idUsuarioValorConfiguracao;
 
-        idUsuarioValorConfiguracao.setText(configuracao.getNomeUsuario());
-        idLucroLiquidoMensalValorConfiguracao.setText(configuracao.getMetaLucroLiquidoMensal().toString());
+        this.idUsuarioValorConfiguracao.setText(configuracao.getNomeUsuario());
+        this.idLucroLiquidoMensalValorConfiguracao.setText(configuracao.getMetaLucroLiquidoMensal().toString());
 
         Button button = root.findViewById(R.id.idSalvarConfiguracao);
         button.setOnClickListener(view -> {
             this.salvar();
-            Toast.makeText(context, "Dados atualizado com sucesso!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this.context, "Dados atualizado com sucesso!", Toast.LENGTH_LONG).show();
         });
 
         return root;
@@ -56,8 +57,8 @@ public class ConfiguracaoFragment extends Fragment {
 
     private void salvar() {
         Configuracao configuracao = this.configuracaoRepository.consultarConfiguracao();
-        configuracao.setNomeUsuario(idUsuarioValorConfiguracao.getText().toString());
-        configuracao.setMetaLucroLiquidoMensal(new BigDecimal(idLucroLiquidoMensalValorConfiguracao.getText().toString()));
+        configuracao.setNomeUsuario(this.idUsuarioValorConfiguracao.getText().toString());
+        configuracao.setMetaLucroLiquidoMensal(new BigDecimal(this.idLucroLiquidoMensalValorConfiguracao.getText().toString()));
         configuracao.setDataAtualizacao(LocalDate.now());
         this.configuracaoRepository.atualizar(configuracao);
     }
@@ -69,7 +70,7 @@ public class ConfiguracaoFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         this.context = context;
         super.onAttach(context);
     }

@@ -20,33 +20,32 @@ public class ConfiguracaoRepository {
     public static final String META_LUCRO_LIQUIDO_MENSAL = "metaLucroLiquidoMensal";
     public static final String DATA_CRIACAO = "dataCriacao";
     public static final String DATA_ATUALIZACAO = "dataAtualizacao";
-    private Conexao conexao;
-    private SQLiteDatabase banco;
+    private final SQLiteDatabase banco;
 
     public ConfiguracaoRepository(Context context) {
-        conexao = new Conexao(context);
-        banco = conexao.getWritableDatabase();
+        Conexao conexao = new Conexao(context);
+        this.banco = conexao.getWritableDatabase();
     }
 
-    public long inserir(Configuracao configuracao) {
+    public void inserir(Configuracao configuracao) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(NOME_USUARIO, configuracao.getNomeUsuario().toUpperCase());
         contentValues.put(META_LUCRO_LIQUIDO_MENSAL, configuracao.getMetaLucroLiquidoMensal().toString());
         contentValues.put(DATA_CRIACAO, LocalDate.now().toString());
-        return banco.insert(TABLE_CONFIGURACAO, null, contentValues);
+        this.banco.insert(TABLE_CONFIGURACAO, null, contentValues);
     }
 
-    public long atualizar(Configuracao configuracao) {
+    public void atualizar(Configuracao configuracao) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(NOME_USUARIO, configuracao.getNomeUsuario().toUpperCase());
         contentValues.put(META_LUCRO_LIQUIDO_MENSAL, configuracao.getMetaLucroLiquidoMensal().toString());
         contentValues.put(DATA_ATUALIZACAO, configuracao.getDataAtualizacao().toString());
-        return banco.update(TABLE_CONFIGURACAO, contentValues, ID + " = ?", new String[]{configuracao.getId().toString()});
+        this.banco.update(TABLE_CONFIGURACAO, contentValues, ID + " = ?", new String[]{configuracao.getId().toString()});
     }
 
     @SuppressLint("Range")
     public Configuracao consultarConfiguracao() {
-        Cursor cursor = banco.query(TABLE_CONFIGURACAO, null, null, null, null, null, null);
+        Cursor cursor = this.banco.query(TABLE_CONFIGURACAO, null, null, null, null, null, null);
 
         Configuracao configuracao = null;
         if (cursor.moveToFirst()) {

@@ -23,15 +23,14 @@ public class CarteiraRepository {
     public static final String ANO_VIGOR = "anoVigor";
     public static final String DATA_ATUALIZACAO = "dataAtualizacao";
     public static final String DATA_CRIACAO = "dataCriacao";
-    private Conexao conexao;
-    private SQLiteDatabase banco;
+    private final SQLiteDatabase banco;
 
     public CarteiraRepository(Context context) {
-        conexao = new Conexao(context);
-        banco = conexao.getWritableDatabase();
+        Conexao conexao = new Conexao(context);
+        this.banco = conexao.getWritableDatabase();
     }
 
-    public long inserir(Carteira carteira) {
+    public void inserir(Carteira carteira) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(TOTAL_INVESTIDO, carteira.getTotalInvestido().toString());
         contentValues.put(LUCRO_LIQUIDO_TOTAL_ANO, carteira.getLucroLiquidoTotalAno().toString());
@@ -39,10 +38,10 @@ public class CarteiraRepository {
         contentValues.put(VALOR_MES_LUCRO_LIQUIDO, carteira.getValorMesLucroLiquido().toString());
         contentValues.put(ANO_VIGOR, carteira.getAnoVigor().toString());
         contentValues.put(DATA_CRIACAO, carteira.getDataCriacao().toString());
-        return banco.insert(TABLE_CARTEIRA, null, contentValues);
+        this.banco.insert(TABLE_CARTEIRA, null, contentValues);
     }
 
-    public long atualizar(Carteira carteira) {
+    public void atualizar(Carteira carteira) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(TOTAL_INVESTIDO, carteira.getTotalInvestido().toString());
         contentValues.put(LUCRO_LIQUIDO_TOTAL_ANO, carteira.getLucroLiquidoTotalAno().toString());
@@ -50,12 +49,12 @@ public class CarteiraRepository {
         contentValues.put(VALOR_MES_LUCRO_LIQUIDO, carteira.getValorMesLucroLiquido().toString());
         contentValues.put(ANO_VIGOR, carteira.getAnoVigor().toString());
         contentValues.put(DATA_ATUALIZACAO, carteira.getDataAtualizacao().toString());
-        return banco.update(TABLE_CARTEIRA, contentValues, ID + " = ?", new String[]{carteira.getId().toString()});
+        this.banco.update(TABLE_CARTEIRA, contentValues, ID + " = ?", new String[]{carteira.getId().toString()});
     }
 
     @SuppressLint("Range")
     public Carteira consultarCarteira(Integer ano) {
-        Cursor cursor = banco.query(TABLE_CARTEIRA, null, ANO_VIGOR + "=" + ano, null, null, null, null);
+        Cursor cursor = this.banco.query(TABLE_CARTEIRA, null, ANO_VIGOR + "=" + ano, null, null, null, null);
 
         Carteira carteira = new Carteira();
         if (cursor.moveToFirst()) {

@@ -29,16 +29,14 @@ public class CompraRepository {
     public static final String STATUS = "status";
     public static final String ATIVO = "ativo";
     public static final String DESC = "DESC";
-    public static final String ASC = "ASC";
-    private Conexao conexao;
-    private SQLiteDatabase banco;
+    private final SQLiteDatabase banco;
 
     public CompraRepository(Context context) {
-        conexao = new Conexao(context);
-        banco = conexao.getWritableDatabase();
+        Conexao conexao = new Conexao(context);
+        this.banco = conexao.getWritableDatabase();
     }
 
-    public long inserir(Compra compra) {
+    public void inserir(Compra compra) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(ATIVO, compra.getAtivo().toUpperCase());
         contentValues.put(STATUS, compra.getStatus().name());
@@ -47,22 +45,22 @@ public class CompraRepository {
         contentValues.put(PRECO_TOTAL, compra.getPrecoTotal().toString());
         contentValues.put(META_PRECO_UNIARIO_VENDA, compra.getMetaPrecoUnitarioVenda().toString());
         contentValues.put(DATA_CRIACAO, compra.getDataCriacao().toString());
-        return banco.insert(TABLE_COMPRA, null, contentValues);
+        this.banco.insert(TABLE_COMPRA, null, contentValues);
     }
 
-    public long atualizar(Compra compra) {
+    public void atualizar(Compra compra) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(QUANTIDADE, compra.getQuantidade());
         contentValues.put(PRECO_UNITARIO, compra.getPrecoUnitario().toString());
         contentValues.put(PRECO_TOTAL, compra.getPrecoTotal().toString());
         contentValues.put(META_PRECO_UNIARIO_VENDA, compra.getMetaPrecoUnitarioVenda().toString());
         contentValues.put(DATA_ATUALIZACAO, compra.getDataAtualizacao().toString());
-        return banco.update(TABLE_COMPRA, contentValues, ID + " = ?", new String[]{compra.getId().toString()});
+        this.banco.update(TABLE_COMPRA, contentValues, ID + " = ?", new String[]{compra.getId().toString()});
     }
 
     @SuppressLint("Range")
     public ArrayList<Compra> consultarComprasAtivas() {
-        Cursor cursor = banco.query(TABLE_COMPRA, null, STATUS + " = 'DISPONIVEL'", null, null, null, null);
+        Cursor cursor = this.banco.query(TABLE_COMPRA, null, STATUS + " = 'DISPONIVEL'", null, null, null, null);
 
         ArrayList<Compra> compras = new ArrayList<>();
         if (cursor.moveToFirst()) {
@@ -85,7 +83,7 @@ public class CompraRepository {
 
     @SuppressLint("Range")
     public Boolean consultarComprasPorNomeAtivo(String nomeAtivo) {
-        Cursor cursor = banco.query(TABLE_COMPRA, null, ATIVO + " LIKE " + "'" + nomeAtivo + "'", null, null, null, null);
+        Cursor cursor = this.banco.query(TABLE_COMPRA, null, ATIVO + " LIKE " + "'" + nomeAtivo + "'", null, null, null, null);
 
         ArrayList<Compra> compras = new ArrayList<>();
         if (cursor.moveToFirst()) {
@@ -101,7 +99,7 @@ public class CompraRepository {
 
     @SuppressLint("Range")
     public Compra consultarCompraPorId(Integer id) {
-        Cursor cursor = banco.query(TABLE_COMPRA, null, ID + "=" + id, null, null, null, null);
+        Cursor cursor = this.banco.query(TABLE_COMPRA, null, ID + "=" + id, null, null, null, null);
 
         Compra compra = new Compra();
         if (cursor.moveToFirst()) {
@@ -120,15 +118,15 @@ public class CompraRepository {
         return compra;
     }
 
-    public long deletar(Integer compra) {
-        return banco.delete(TABLE_COMPRA, ID + "=" + compra, null);
+    public void deletar(Integer compra) {
+        this.banco.delete(TABLE_COMPRA, ID + "=" + compra, null);
     }
 
-    public long atualizarStatus(Integer id, Status status) {
+    public void atualizarStatus(Integer id, Status status) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(STATUS, status.name());
         contentValues.put(DATA_ATUALIZACAO, LocalDate.now().toString());
-        return banco.update(TABLE_COMPRA, contentValues, ID + " = ?", new String[]{id.toString()});
+        this.banco.update(TABLE_COMPRA, contentValues, ID + " = ?", new String[]{id.toString()});
     }
 
     @SuppressLint("Range")
@@ -137,7 +135,7 @@ public class CompraRepository {
                 ATIVO,
                 "sum(" + QUANTIDADE + ") AS " + "tmp_quantidade_total",
         };
-        Cursor cursor = banco.query(TABLE_COMPRA, columns, STATUS + " = 'DISPONIVEL'", null, ATIVO, null, QUANTIDADE + " " + DESC);
+        Cursor cursor = this.banco.query(TABLE_COMPRA, columns, STATUS + " = 'DISPONIVEL'", null, ATIVO, null, QUANTIDADE + " " + DESC);
 
         ArrayList<Compra> compras = new ArrayList<>();
         if (cursor.moveToFirst()) {

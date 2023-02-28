@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.llo.lafinance.R;
-import com.llo.lafinance.domain.HomeService;
+import com.llo.lafinance.domain.service.HomeService;
 import com.llo.lafinance.model.Compra;
 import com.llo.lafinance.repositorio.CarteiraRepository;
 import com.llo.lafinance.repositorio.CompraRepository;
@@ -68,7 +68,7 @@ public class EditaCompraActivity extends AppCompatActivity {
             compra.setMetaPrecoUnitarioVenda(new BigDecimal(metaPrecoUnitarioVenda.getText().toString()));
             compra.setDataAtualizacao(LocalDate.now());
 
-            long id = this.compraRepository.atualizar(compra);
+            this.compraRepository.atualizar(compra);
             Toast.makeText(this, "Compra atualizada com sucesso: " + id, Toast.LENGTH_LONG).show();
             new HomeService(this.compraRepository, new VendaRepository(this), new CarteiraRepository(this)).atualizarCarteira();
             this.carregarTelaPrincipal();

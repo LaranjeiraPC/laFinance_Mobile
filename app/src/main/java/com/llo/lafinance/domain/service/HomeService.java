@@ -1,4 +1,4 @@
-package com.llo.lafinance.domain;
+package com.llo.lafinance.domain.service;
 
 import com.llo.lafinance.model.Carteira;
 import com.llo.lafinance.model.Compra;

@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.llo.lafinance.databinding.FragmentHomeBinding;
-import com.llo.lafinance.domain.HomeService;
+import com.llo.lafinance.domain.service.HomeService;
 import com.llo.lafinance.model.Carteira;
 import com.llo.lafinance.model.Compra;
 import com.llo.lafinance.repositorio.CarteiraRepository;
@@ -37,44 +37,45 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        this.binding = FragmentHomeBinding.inflate(inflater, container, false);
+        View root = this.binding.getRoot();
 
-        compraRepository = new CompraRepository(context);
-        configuracaoRepository = new ConfiguracaoRepository(context);
+        this.compraRepository = new CompraRepository(this.context);
+        this.configuracaoRepository = new ConfiguracaoRepository(this.context);
 
-        final TextView idBoasVindas = binding.idBoasVindasValorHome;
-        final TextView ativo1 = binding.idAtivoUmValorHome;
-        final TextView ativo2 = binding.idAtivoDoisValorHome;
-        final TextView ativo3 = binding.idAtivoTresValorHome;
-        final TextView ativo4 = binding.idAtivoQuatroValorHome;
-        final TextView ativo5 = binding.idAtivoCincoValorHome;
-        final PieChart idGraficoHome = binding.idGraficoHome;
-
-        final LinearLayout idUmCampo = binding.idUmCampoLegendaHome;
-        final LinearLayout idDoisCampo = binding.idDoisCampoLegendaHome;
-        final LinearLayout idTresCampo = binding.idTresCampoLegendaHome;
-        final LinearLayout idQuatroCampo = binding.idQuatroCampoLegendaHome;
-        final LinearLayout idCincoCampo = binding.idCincoCampoLegendaHome;
-
-        final TextView idTotalInvestidoValorHome = binding.idTotalInvestidoValorHome;
-        final TextView iLucroLiquidoTotalValorHome = binding.iLucroLiquidoTotalValorHome;
-        final TextView iMesLucroLiquidoValorHome = binding.iMesLucroLiquidoValorHome;
-        final TextView iMesLucroLiquidoDadoValorHome = binding.iMesLucroLiquidoDadoValorHome;
-
-        this.definirBoasVindas(idBoasVindas);
-        this.definirDadosExibicao(ativo1, ativo2, ativo3, ativo4, ativo5,
-                idGraficoHome, idUmCampo, idDoisCampo, idTresCampo, idQuatroCampo, idCincoCampo,
-                idTotalInvestidoValorHome, iLucroLiquidoTotalValorHome, iMesLucroLiquidoValorHome, iMesLucroLiquidoDadoValorHome);
+        this.definirBoasVindas(this.binding.idBoasVindasValorHome);
+        this.definirDadosExibicao(
+                this.binding.idAtivoUmValorHome,
+                this.binding.idAtivoDoisValorHome,
+                this.binding.idAtivoTresValorHome,
+                this.binding.idAtivoQuatroValorHome,
+                this.binding.idAtivoCincoValorHome,
+                this.binding.idGraficoHome,
+                this.binding.idUmCampoLegendaHome,
+                this.binding.idDoisCampoLegendaHome,
+                this.binding.idTresCampoLegendaHome,
+                this.binding.idQuatroCampoLegendaHome,
+                this.binding.idCincoCampoLegendaHome,
+                this.binding.idTotalInvestidoValorHome,
+                this.binding.iMesLucroLiquidoValorHome,
+                this.binding.iMesLucroLiquidoValorHome,
+                this.binding.iMesLucroLiquidoDadoValorHome);
         return root;
     }
 
-    private void definirDadosExibicao(TextView ativo1, TextView ativo2, TextView ativo3, TextView ativo4, TextView ativo5, PieChart idGraficoHome, LinearLayout idUmCampo, LinearLayout idDoisCampo, LinearLayout idTresCampo, LinearLayout idQuatroCampo, LinearLayout idCincoCampo, TextView idTotalInvestidoValorHome, TextView iLucroLiquidoTotalValorHome, TextView iMesLucroLiquidoValorHome, TextView iMesLucroLiquidoDadoValorHome) {
+    private void definirDadosExibicao(TextView ativo1, TextView ativo2, TextView ativo3, TextView ativo4,
+                                      TextView ativo5, PieChart idGraficoHome, LinearLayout idUmCampo,
+                                      LinearLayout idDoisCampo, LinearLayout idTresCampo, LinearLayout idQuatroCampo,
+                                      LinearLayout idCincoCampo, TextView idTotalInvestidoValorHome,
+                                      TextView iLucroLiquidoTotalValorHome, TextView iMesLucroLiquidoValorHome,
+                                      TextView iMesLucroLiquidoDadoValorHome) {
         List<Compra> compras = this.compraRepository.consultarComprasDisponiveisPorQuantidadeAgrupada();
         this.setData(ativo1, ativo2, ativo3, ativo4, ativo5, idGraficoHome, compras);
-        this.desabilitarLayout(ativo1, ativo2, ativo3, ativo4, ativo5, idUmCampo, idDoisCampo, idTresCampo, idQuatroCampo, idCincoCampo);
+        this.desabilitarLayout(ativo1, ativo2, ativo3, ativo4, ativo5, idUmCampo, idDoisCampo,
+                idTresCampo, idQuatroCampo, idCincoCampo);
 
-        Carteira carteira = new HomeService(this.compraRepository, new VendaRepository(context), new CarteiraRepository(context)).consultarCarteira();
+        Carteira carteira = new HomeService(this.compraRepository, new VendaRepository(this.context),
+                new CarteiraRepository(this.context)).consultarCarteira();
         if (Objects.nonNull(carteira.getId())) {
             NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
             idTotalInvestidoValorHome.setText(numberFormat.format(carteira.getTotalInvestido()));
@@ -87,15 +88,18 @@ public class HomeFragment extends Fragment {
     private void definirBoasVindas(TextView idBoasVindas) {
         String usuario = this.configuracaoRepository.consultarConfiguracao().getNomeUsuario();
         if (LocalDateTime.now().getHour() >= 0 && LocalDateTime.now().getHour() <= 11) {
-            idBoasVindas.setText("Bom dia, " + usuario + "!");
+            idBoasVindas.setText(String.format("Bom dia, %s", usuario + "!"));
         } else if (LocalDateTime.now().getHour() > 11 && LocalDateTime.now().getHour() < 18) {
-            idBoasVindas.setText("Boa tarde, " + usuario + "!");
+            idBoasVindas.setText(String.format("Boa tarde, %s", usuario + "!"));
         } else if (LocalDateTime.now().getHour() >= 18) {
-            idBoasVindas.setText("Boa noite, " + usuario + "!");
+            idBoasVindas.setText(String.format("Boa noite, %s", usuario + "!"));
         }
     }
 
-    private void desabilitarLayout(TextView ativo1, TextView ativo2, TextView ativo3, TextView ativo4, TextView ativo5, LinearLayout idUmCampo, LinearLayout idDoisCampo, LinearLayout idTresCampo, LinearLayout idQuatroCampo, LinearLayout idCincoCampo) {
+    private void desabilitarLayout(TextView ativo1, TextView ativo2, TextView ativo3,
+                                   TextView ativo4, TextView ativo5, LinearLayout idUmCampo,
+                                   LinearLayout idDoisCampo, LinearLayout idTresCampo,
+                                   LinearLayout idQuatroCampo, LinearLayout idCincoCampo) {
         if (ativo1.getText().length() == 0)
             idUmCampo.setVisibility(View.INVISIBLE);
 
@@ -112,11 +116,13 @@ public class HomeFragment extends Fragment {
             idCincoCampo.setVisibility(View.INVISIBLE);
     }
 
-    private void setData(TextView ativo1, TextView ativo2, TextView ativo3, TextView ativo4, TextView ativo5, PieChart idGraficoHome, List<Compra> compras) {
+    private void setData(TextView ativo1, TextView ativo2, TextView ativo3, TextView ativo4,
+                         TextView ativo5, PieChart idGraficoHome, List<Compra> compras) {
         for (int i = 0; i < compras.size(); i++) {
+            String textoFormatado = String.format(compras.get(i).getAtivo() + " - " + compras.get(i).getQuantidade().toString());
             switch (i) {
                 case 0: {
-                    ativo1.setText(compras.get(i).getAtivo() + " - " + compras.get(i).getQuantidade().toString());
+                    ativo1.setText(textoFormatado);
                     idGraficoHome.addPieSlice(
                             new PieModel(
                                     compras.get(i).getAtivo(),
@@ -125,7 +131,7 @@ public class HomeFragment extends Fragment {
                     break;
                 }
                 case 1: {
-                    ativo2.setText(compras.get(i).getAtivo() + " - " + compras.get(i).getQuantidade().toString());
+                    ativo2.setText(textoFormatado);
                     idGraficoHome.addPieSlice(
                             new PieModel(
                                     compras.get(i).getAtivo(),
@@ -134,7 +140,7 @@ public class HomeFragment extends Fragment {
                     break;
                 }
                 case 2: {
-                    ativo3.setText(compras.get(i).getAtivo() + " - " + compras.get(i).getQuantidade().toString());
+                    ativo3.setText(textoFormatado);
                     idGraficoHome.addPieSlice(
                             new PieModel(
                                     compras.get(i).getAtivo(),
@@ -143,7 +149,7 @@ public class HomeFragment extends Fragment {
                     break;
                 }
                 case 3: {
-                    ativo4.setText(compras.get(i).getAtivo() + " - " + compras.get(i).getQuantidade().toString());
+                    ativo4.setText(textoFormatado);
                     idGraficoHome.addPieSlice(
                             new PieModel(
                                     compras.get(i).getAtivo(),
@@ -152,7 +158,7 @@ public class HomeFragment extends Fragment {
                     break;
                 }
                 case 4: {
-                    ativo5.setText(compras.get(i).getAtivo() + " - " + compras.get(i).getQuantidade().toString());
+                    ativo5.setText(textoFormatado);
                     idGraficoHome.addPieSlice(
                             new PieModel(
                                     compras.get(i).getAtivo(),
@@ -168,11 +174,11 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        this.binding = null;
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         this.context = context;
         super.onAttach(context);
     }
