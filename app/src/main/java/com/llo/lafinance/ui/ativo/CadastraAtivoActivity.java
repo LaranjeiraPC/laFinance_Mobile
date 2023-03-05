@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,9 +31,15 @@ public class CadastraAtivoActivity extends AppCompatActivity {
         descricaoAtivo = findViewById(R.id.editTextDescricaoAtivo);
 
         ativoRepository = new AtivoRepository(this);
+
+        ImageView buttonSalvar = findViewById(R.id.idCadastrarAtivo);
+        buttonSalvar.setOnClickListener(view -> this.salvar());
+
+        ImageView buttonCancelar = findViewById(R.id.idCancelarAtivo);
+        buttonCancelar.setOnClickListener(view -> this.cancelar());
     }
 
-    public void salvar(View view) {
+    public void salvar() {
         if (Objects.nonNull(nomeAtivo) && nomeAtivo.getText().length() > 0) {
 
             Ativo ativo = this.ativoRepository.consultarAtivo(nomeAtivo.getText().toString());
@@ -64,7 +71,7 @@ public class CadastraAtivoActivity extends AppCompatActivity {
         finish();
     }
 
-    public void cancelar(View view) {
+    public void cancelar() {
         finish();
     }
 }

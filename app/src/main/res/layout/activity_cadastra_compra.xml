@@ -7,6 +7,30 @@
     android:background="@color/white"
     tools:context=".ui.carteira.CadastraCompraActivity">
 
+    <ImageView
+        android:id="@+id/idImageCancelarCompra"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.597"
+        app:srcCompat="@drawable/close" />
+
+    <ImageView
+        android:id="@+id/idImageCompra"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.734"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.597"
+        app:srcCompat="@drawable/save" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -126,40 +150,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.49" />
-
-    <Button
-        android:id="@+id/buttonCancelarAtivo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="cancelar"
-        android:text="Cancelar"
-        android:textColor="@color/white"
-        android:visibility="visible"
-        app:backgroundTint="#DE893E"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.584"
-        tools:visibility="visible" />
-
-    <Button
-        android:id="@+id/buttonsalvar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="salvar"
-        android:text="Salvar"
-        android:textColor="@color/white"
-        android:visibility="visible"
-        app:backgroundTint="#3E7EDF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.128"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.584"
-        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -45,7 +43,7 @@ public class AtivoFragment extends Fragment {
         this.definirQuantidadeTotalAtivos(ativoTotalTextView, ativos);
         this.definirListaAtivos(ativoListView, ativos);
 
-        Button button = root.findViewById(R.id.buttonCadastraAtivo);
+        ImageView button = root.findViewById(R.id.buttonCadastraAtivo);
         button.setOnClickListener(view -> {
             Intent intent = new Intent(context, CadastraAtivoActivity.class);
             startActivity(intent);

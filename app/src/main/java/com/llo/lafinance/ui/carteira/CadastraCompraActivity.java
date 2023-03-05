@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,6 +57,12 @@ public class CadastraCompraActivity extends AppCompatActivity implements Adapter
         this.nomeAtivos = tempNomeAtivos.toArray(strarray);
 
         this.listarAtivos(this.nomeAtivos);
+
+        ImageView buttonSalvar = findViewById(R.id.idImageCompra);
+        buttonSalvar.setOnClickListener(view -> this.salvar());
+
+        ImageView buttonExcluir = findViewById(R.id.idImageCancelarCompra);
+        buttonExcluir.setOnClickListener(view -> this.cancelar());
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
@@ -77,7 +84,7 @@ public class CadastraCompraActivity extends AppCompatActivity implements Adapter
         spinner.setOnItemSelectedListener(this);
     }
 
-    public void salvar(View view) {
+    public void salvar() {
         if (this.ativo.length() > 0 && this.quantidade.getText().length() > 0 && this.valorUnitario.getText().length() > 0) {
             Compra compra = new Compra();
             compra.setAtivo(this.ativo);
@@ -104,7 +111,7 @@ public class CadastraCompraActivity extends AppCompatActivity implements Adapter
         finish();
     }
 
-    public void cancelar(View view) {
+    public void cancelar() {
         this.carregarTelaPrincipal();
     }
 }

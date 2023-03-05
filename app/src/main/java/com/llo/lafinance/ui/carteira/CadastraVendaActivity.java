@@ -2,8 +2,8 @@ package com.llo.lafinance.ui.carteira;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,9 +54,16 @@ public class CadastraVendaActivity extends AppCompatActivity {
 
         this.compraRepository = new CompraRepository(this);
         this.vendaRepository = new VendaRepository(this);
+
+        ImageView buttonSalvar = findViewById(R.id.idImageVenderCompra);
+        buttonSalvar.setOnClickListener(view -> this.salvar());
+
+        ImageView buttonExcluir = findViewById(R.id.idImageCancelarVenda);
+        buttonExcluir.setOnClickListener(view -> this.cancelar());
+
     }
 
-    public void salvar(View view) {
+    public void salvar() {
         if (this.quantidadeVenda.getText().length() > 0 && this.precoUnitarioVenda.getText().length() > 0) {
             BigDecimal precoTotalCompra = this.compraRepository.consultarCompraPorId(this.idCompra).getPrecoTotal();
             Venda venda = new Venda();
@@ -84,7 +91,7 @@ public class CadastraVendaActivity extends AppCompatActivity {
         finish();
     }
 
-    public void cancelar(View view) {
+    public void cancelar() {
         this.carregarTelaPrincipal();
     }
 }

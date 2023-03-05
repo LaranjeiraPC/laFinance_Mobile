@@ -2,8 +2,8 @@ package com.llo.lafinance.ui.carteira;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,9 +57,21 @@ public class EditaCompraActivity extends AppCompatActivity {
         totalCompra = new BigDecimal(total);
 
         compraRepository = new CompraRepository(this);
+
+        ImageView buttonSalvar = findViewById(R.id.idSalvarCompra);
+        buttonSalvar.setOnClickListener(view -> this.salvar());
+
+        ImageView buttonExcluir = findViewById(R.id.idExcluirCompra);
+        buttonExcluir.setOnClickListener(view -> this.excluir());
+
+        ImageView buttonCancelar = findViewById(R.id.idCancelarCompra);
+        buttonCancelar.setOnClickListener(view -> this.cancelar());
+
+        ImageView buttonVender = findViewById(R.id.idVenderCompra);
+        buttonVender.setOnClickListener(view -> this.vender());
     }
 
-    public void salvar(View view) {
+    public void salvar() {
         if (quantidade.getText().length() > 0 && valorUnitario.getText().length() > 0) {
             Compra compra = this.compraRepository.consultarCompraPorId(id);
             compra.setQuantidade(Integer.parseInt(quantidade.getText().toString()));
@@ -77,7 +89,7 @@ public class EditaCompraActivity extends AppCompatActivity {
         }
     }
 
-    public void excluir(View view) {
+    public void excluir() {
         Bundle bundle = new Bundle();
         bundle.putString("idCompra", id.toString());
 
@@ -86,7 +98,7 @@ public class EditaCompraActivity extends AppCompatActivity {
         excluiCarteiraFragment.show(getSupportFragmentManager(), "excluicompra");
     }
 
-    public void vender(View view) {
+    public void vender() {
         Intent intent = new Intent(EditaCompraActivity.this, CadastraVendaActivity.class);
 
         Bundle txtBundle = new Bundle();
@@ -107,7 +119,7 @@ public class EditaCompraActivity extends AppCompatActivity {
         finish();
     }
 
-    public void cancelar(View view) {
+    public void cancelar() {
         this.finish();
     }
 }

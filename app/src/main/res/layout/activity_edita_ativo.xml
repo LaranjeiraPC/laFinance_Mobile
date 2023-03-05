@@ -57,52 +57,40 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.234" />
 
-    <Button
-        android:id="@+id/buttonSalvarAtivo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="salvar"
-        android:text="Salvar"
-        android:visibility="visible"
+    <ImageView
+        android:id="@+id/idSalvarAtivo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintHorizontal_bias="0.601"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.336"
-        tools:visibility="visible" />
+        app:layout_constraintVertical_bias="0.344"
+        app:srcCompat="@drawable/save" />
 
-    <Button
-        android:id="@+id/buttonExcluirAtivo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="excluir"
-        android:text="Excluir"
-        android:visibility="visible"
-        app:backgroundTint="#DF3E3E"
+    <ImageView
+        android:id="@+id/idExcluirAtivo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.443"
+        app:layout_constraintHorizontal_bias="0.749"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.336"
-        tools:visibility="visible" />
+        app:layout_constraintVertical_bias="0.344"
+        app:srcCompat="@drawable/cancel" />
 
-    <Button
-        android:id="@+id/buttonCancelarEdicaoAtivo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="cancelar"
-        android:text="Cancelar"
-        android:textColor="@color/white"
-        android:visibility="visible"
-        app:backgroundTint="#DE893E"
+    <ImageView
+        android:id="@+id/idCancelarEdicaoAtivo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintHorizontal_bias="0.897"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.336"
-        tools:visibility="visible" />
+        app:layout_constraintVertical_bias="0.344"
+        app:srcCompat="@drawable/close" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

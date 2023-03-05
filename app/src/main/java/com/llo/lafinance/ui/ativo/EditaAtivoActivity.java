@@ -2,8 +2,8 @@ package com.llo.lafinance.ui.ativo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,11 +44,20 @@ public class EditaAtivoActivity extends AppCompatActivity {
         nomeAtivo.setText(nome);
         descricaoAtivo.setText(descricao);
 
+        ImageView buttonSalvar = findViewById(R.id.idSalvarAtivo);
+        buttonSalvar.setOnClickListener(view -> this.salvar());
+
+        ImageView buttonExcluir = findViewById(R.id.idExcluirAtivo);
+        buttonExcluir.setOnClickListener(view -> this.excluir());
+
+        ImageView buttonCancelar = findViewById(R.id.idCancelarEdicaoAtivo);
+        buttonCancelar.setOnClickListener(view -> this.cancelar());
+
         ativoRepository = new AtivoRepository(this);
         compraRepository = new CompraRepository(this);
     }
 
-    public void salvar(View view) {
+    public void salvar() {
         if (Objects.nonNull(nomeAtivo) && nomeAtivo.getText().length() > 0) {
             this.validaAtivoExistente();
 
@@ -68,7 +77,7 @@ public class EditaAtivoActivity extends AppCompatActivity {
         }
     }
 
-    public void excluir(View view) {
+    public void excluir() {
         Bundle bundle = new Bundle();
         bundle.putString("idAtivo", idAtivo.toString());
 
@@ -95,7 +104,7 @@ public class EditaAtivoActivity extends AppCompatActivity {
         finish();
     }
 
-    public void cancelar(View view) {
+    public void cancelar() {
         finish();
     }
 }

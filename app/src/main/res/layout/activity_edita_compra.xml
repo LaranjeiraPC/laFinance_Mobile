@@ -131,73 +131,53 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.49" />
 
-    <Button
-        android:id="@+id/buttonExcluirCompra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="excluir"
-        android:text="Excluir"
-        android:textColor="@color/white"
-        android:visibility="visible"
-        app:backgroundTint="#DF3E3E"
+    <ImageView
+        android:id="@+id/idSalvarCompra"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintHorizontal_bias="0.423"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.679"
-        tools:visibility="visible" />
+        app:layout_constraintVertical_bias="0.622"
+        app:srcCompat="@drawable/save" />
 
-    <Button
-        android:id="@+id/buttonCancelarCompra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="cancelar"
-        android:text="Cancelar"
-        android:textColor="@color/white"
-        android:visibility="visible"
-        app:backgroundTint="#DE893E"
+    <ImageView
+        android:id="@+id/idCancelarCompra"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.894"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.581"
-        tools:visibility="visible" />
+        app:layout_constraintVertical_bias="0.622"
+        app:srcCompat="@drawable/close" />
 
-    <Button
-        android:id="@+id/buttonVenderCompra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="vender"
-        android:text="Vender"
-        android:textColor="@color/white"
-        android:visibility="visible"
-        app:backgroundTint="#3EDE73"
+    <ImageView
+        android:id="@+id/idExcluirCompra"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.877"
+        app:layout_constraintHorizontal_bias="0.734"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.581"
-        tools:visibility="visible" />
+        app:layout_constraintVertical_bias="0.622"
+        app:srcCompat="@drawable/cancel" />
 
-    <Button
-        android:id="@+id/buttonsalvar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="salvar"
-        android:text="Salvar"
-        android:textColor="@color/white"
-        android:visibility="visible"
-        app:backgroundTint="#3E7EDF"
+    <ImageView
+        android:id="@+id/idVenderCompra"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintHorizontal_bias="0.578"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.581"
-        tools:visibility="visible" />
+        app:layout_constraintVertical_bias="0.622"
+        app:srcCompat="@drawable/sell" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

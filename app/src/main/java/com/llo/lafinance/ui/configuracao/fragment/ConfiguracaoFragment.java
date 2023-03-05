@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,11 +46,8 @@ public class ConfiguracaoFragment extends Fragment {
         this.idUsuarioValorConfiguracao.setText(configuracao.getNomeUsuario());
         this.idLucroLiquidoMensalValorConfiguracao.setText(configuracao.getMetaLucroLiquidoMensal().toString());
 
-        Button button = root.findViewById(R.id.idSalvarConfiguracao);
-        button.setOnClickListener(view -> {
-            this.salvar();
-            Toast.makeText(this.context, "Dados atualizado com sucesso!", Toast.LENGTH_LONG).show();
-        });
+        ImageView buttonSalvar = root.findViewById(R.id.idImageSalvarConfiguracao);
+        buttonSalvar.setOnClickListener(view -> this.salvar());
 
         return root;
     }
@@ -61,6 +58,7 @@ public class ConfiguracaoFragment extends Fragment {
         configuracao.setMetaLucroLiquidoMensal(new BigDecimal(this.idLucroLiquidoMensalValorConfiguracao.getText().toString()));
         configuracao.setDataAtualizacao(LocalDate.now());
         this.configuracaoRepository.atualizar(configuracao);
+        Toast.makeText(this.context, "Dados atualizado com sucesso!", Toast.LENGTH_LONG).show();
     }
 
     @Override

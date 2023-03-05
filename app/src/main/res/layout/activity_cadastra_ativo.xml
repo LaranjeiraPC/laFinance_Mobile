@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/idSalvarAtivo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -54,10 +55,10 @@
         android:id="@+id/editTextDescricaoAtivo"
         android:layout_width="336dp"
         android:layout_height="49dp"
+        android:backgroundTint="#2B356E"
         android:ems="10"
         android:hint="Descrição do ativo"
         android:inputType="textPersonName"
-        android:backgroundTint="#2B356E"
         android:textColor="#474747"
         android:textColorHighlight="#1D746D"
         android:textColorHint="#424242"
@@ -68,38 +69,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.234" />
 
-    <Button
-        android:id="@+id/buttonSalvarAtivo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="salvar"
-        android:text="Salvar"
-        android:visibility="visible"
-        app:backgroundTint="#3E7EDF"
-        android:textColor="@color/white"
+    <ImageView
+        android:id="@+id/idCadastrarAtivo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintHorizontal_bias="0.731"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.336"
-        tools:visibility="visible" />
+        app:layout_constraintVertical_bias="0.358"
+        app:srcCompat="@drawable/save" />
 
-    <Button
-        android:id="@+id/buttonCancelarAtivo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="cancelar"
-        android:text="Cancelar"
-        android:textColor="@color/white"
-        android:visibility="visible"
-        app:backgroundTint="#DE893E"
+    <ImageView
+        android:id="@+id/idCancelarAtivo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.894"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.336"
-        tools:visibility="visible" />
+        app:layout_constraintVertical_bias="0.358"
+        app:srcCompat="@drawable/close" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
