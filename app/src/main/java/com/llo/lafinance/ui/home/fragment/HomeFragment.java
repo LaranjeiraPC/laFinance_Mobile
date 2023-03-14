@@ -24,6 +24,7 @@ import com.llo.lafinance.repositorio.VendaRepository;
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -57,7 +58,7 @@ public class HomeFragment extends Fragment {
                 this.binding.idQuatroCampoLegendaHome,
                 this.binding.idCincoCampoLegendaHome,
                 this.binding.idTotalInvestidoValorHome,
-                this.binding.iMesLucroLiquidoValorHome,
+                this.binding.iLucroLiquidoTotalValorHome,
                 this.binding.iMesLucroLiquidoValorHome,
                 this.binding.iMesLucroLiquidoDadoValorHome);
         return root;
@@ -80,8 +81,11 @@ public class HomeFragment extends Fragment {
             NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
             idTotalInvestidoValorHome.setText(numberFormat.format(carteira.getTotalInvestido()));
             iLucroLiquidoTotalValorHome.setText(numberFormat.format(carteira.getLucroLiquidoTotalAno()));
-            iMesLucroLiquidoValorHome.setText(carteira.getMesLucroLiquido());
-            iMesLucroLiquidoDadoValorHome.setText(numberFormat.format(carteira.getValorMesLucroLiquido()));
+
+            if (carteira.getValorMesLucroLiquido().compareTo(BigDecimal.ZERO) > 0) {
+                iMesLucroLiquidoValorHome.setText(carteira.getMesLucroLiquido());
+                iMesLucroLiquidoDadoValorHome.setText(numberFormat.format(carteira.getValorMesLucroLiquido()));
+            }
         }
     }
 

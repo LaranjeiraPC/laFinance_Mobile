@@ -15,35 +15,7 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.455"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.049" />
-
-    <TextView
-        android:id="@+id/idAnoLegendaRelatorio2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ativo"
-        android:textColor="#404040"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.049" />
-
-    <TextView
-        android:id="@+id/idMesLegendaRelatorio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mês"
-        android:textColor="#404040"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.049" />
@@ -68,24 +40,24 @@
         android:theme="@style/spinnerTheme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.604"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.09" />
 
-    <Spinner
-        android:id="@+id/idSpinnerAtivoRelatorio"
-        android:layout_width="120dp"
-        android:layout_height="26dp"
-        android:backgroundTint="#424242"
-        android:forceDarkAllowed="false"
-        android:theme="@style/spinnerTheme"
+    <TextView
+        android:id="@+id/idMesLegendaRelatorio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mês"
+        android:textColor="#404040"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.385"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09" />
+        app:layout_constraintVertical_bias="0.049" />
 
     <Spinner
         android:id="@+id/idSpinnerMesRelatorio"
@@ -96,7 +68,7 @@
         android:theme="@style/spinnerTheme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintHorizontal_bias="0.447"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.09" />
@@ -140,6 +112,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idTotalLegendaRelatorio"
         app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/idFiltro"
+        android:layout_width="98dp"
+        android:layout_height="39dp"
+        android:text="Filtrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.073" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
