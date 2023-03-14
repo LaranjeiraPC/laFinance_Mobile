@@ -6,12 +6,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import androidx.annotation.NonNull;
+
 import com.llo.lafinance.config.Conexao;
 import com.llo.lafinance.model.Venda;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class VendaRepository {
 
@@ -54,9 +57,32 @@ public class VendaRepository {
     }
 
     @SuppressLint("Range")
-    public ArrayList<Venda> consultarVendas() {
-        Cursor cursor = this.banco.query(TABLE_VENDA, null, null, null, null, null, null);
+    public ArrayList<Venda> consultarVendas(String anoTemp, String mesTemp) {
+        String condicao = null;
 
+        if (Objects.nonNull(mesTemp) && mesTemp.length() == 1)
+            mesTemp = "0" + mesTemp;
+
+        if (Objects.nonNull(anoTemp) && Objects.nonNull(mesTemp) && !Objects.equals(mesTemp, "") && !Objects.equals(anoTemp, "")) {
+            condicao = "strftime('%Y', " + DATA_CRIACAO + ") = " + "'" + anoTemp + "' and strftime('%m', " + DATA_CRIACAO + ") = " + "'" + mesTemp + "'";
+        } else if (Objects.nonNull(anoTemp) && (Objects.isNull(mesTemp) || Objects.equals(mesTemp, ""))) {
+            condicao = "strftime('%Y', " + DATA_CRIACAO + ") = " + "'" + anoTemp + "'";
+        } else if ((Objects.isNull(anoTemp) || Objects.equals(anoTemp, "")) && Objects.nonNull(mesTemp)) {
+            condicao = "strftime('%m', " + DATA_CRIACAO + ") = " + "'" + mesTemp + "'";
+        }
+
+        if (Objects.nonNull(condicao)) {
+            Cursor cursor = this.banco.query(TABLE_VENDA, null, condicao, null, null, null, null);
+            return this.definirObjeto(cursor);
+        } else {
+            Cursor cursor = this.banco.query(TABLE_VENDA, null, null, null, null, null, null);
+            return this.definirObjeto(cursor);
+        }
+    }
+
+    @SuppressLint("Range")
+    @NonNull
+    private ArrayList<Venda> definirObjeto(Cursor cursor) {
         ArrayList<Venda> vendas = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {

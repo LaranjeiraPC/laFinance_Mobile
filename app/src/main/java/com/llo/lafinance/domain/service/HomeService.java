@@ -30,7 +30,7 @@ public class HomeService {
 
     public void atualizarCarteira() {
         ArrayList<Compra> compras = this.compraRepository.consultarComprasAtivas();
-        ArrayList<Venda> vendas = this.vendaRepository.consultarVendas();
+        ArrayList<Venda> vendas = this.vendaRepository.consultarVendas(null, null);
         Venda venda = this.vendaRepository.consultarTopEmpresaAno(LocalDate.now().getYear());
 
         Carteira carteiraTemp = this.carteiraRepository.consultarCarteira(LocalDate.now().getYear());
